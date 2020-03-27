@@ -24,6 +24,8 @@ class CreateCoursesTable extends Migration
 
             $table->bigInteger('grade_id')->unsigned();
             $table->foreign('grade_id')->references('id')->on('grades');
+
+            $table->text('content')->nullable();
         });
     }
 

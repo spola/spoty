@@ -16,7 +16,7 @@ class Course extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'icon', 'grade_id',
+        'name', 'icon', 'grade_id', 'content',
     ];
 
     public function grade()

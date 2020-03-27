@@ -1,0 +1,27 @@
+Artes
+Matemáticas
+Biología
+Física
+Tecnología
+Química
+Lenguaje
+Inglés
+Historia
+Música
+
+
+
+
+App\Grade::create(['name'=>'8B'])
+User::create([ 'name'=> 'Paulette Arp', 'email' => 'paulette.arp@gmail.com', 'password'=>bcrypt('secret'), 'is_student'=>true, 'grade_id' => '1' ])
+
+App\Course::create(['name'=>'Artes', 'icon'=>'artes.png',  'grade_id' => 1]);
+App\Course::create(['name'=>'Biología', 'icon'=>'biologia.png',  'grade_id' => 1]);
+App\Course::create(['name'=>'Física', 'icon'=>'fisica.png',  'grade_id' => 1]);
+App\Course::create(['name'=>'Geografía', 'icon'=>'geografia.png',  'grade_id' => 1]);
+App\Course::create(['name'=>'Inglés', 'icon'=>'lengua-inglesa.png',  'grade_id' => 1]);
+App\Course::create(['name'=>'Lenguaje', 'icon'=>'lenguaje.png',  'grade_id' => 1]);
+App\Course::create(['name'=>'Matemática', 'icon'=>'matematicas.png',  'grade_id' => 1]);
+App\Course::create(['name'=>'Ed. Física', 'icon'=>'musculo.png',  'grade_id' => 1]);
+App\Course::create(['name'=>'Química', 'icon'=>'quimica.png',  'grade_id' => 1]);
+App\Course::create(['name'=>'Tecnología', 'icon'=>'tecnologia.png',  'grade_id' => 1]);

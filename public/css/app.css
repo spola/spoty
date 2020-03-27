@@ -21,7 +21,6 @@ body {
   background: #7386D5;
   color: #fff;
   transition: all 0.3s;
-  /* Esto es lo que lo moví */
 }
 
 #sidebar.active {
@@ -101,14 +100,6 @@ body {
   color: #fff !important;
 }
 
-#sidebar p {
-  font-family: "Poppins", sans-serif;
-  font-size: 1.1em;
-  font-weight: 300;
-  line-height: 1.7em;
-  color: #999;
-}
-
 #sidebar a,
 #sidebar a:hover,
 #sidebar a:focus {
@@ -132,13 +123,6 @@ body {
   border: none;
 }
 
-#sidebar .line {
-  width: 100%;
-  height: 1px;
-  border-bottom: 1px dashed #ddd;
-  margin: 40px 0;
-}
-
 #sidebar .course_icon {
   width: 30px;
   height: 30px;
@@ -146,6 +130,30 @@ body {
 
 #sidebar .icons {
   text-align: center;
+}
+
+.course {
+  /* Esto es lo que lo moví */
+}
+
+.course p {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.1em;
+  font-weight: 300;
+  line-height: 1.7em;
+  color: #999;
+}
+
+.course .line {
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px dashed #ddd;
+  margin: 40px 0;
+}
+
+.course .course_icon {
+  width: 60px;
+  height: 60px;
 }
 
 /* ---------------------------------------------------

@@ -26,7 +26,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
     Route::get('/student', 'Students\HomeController@index')->name('student.home');
 
-    Route::get('/courses/{id}', 'Students\CourseController@show')->name('courses.show');
+    Route::get('/courses/{course}', 'Students\CourseController@show')->name('courses.show');
 
 });
 
