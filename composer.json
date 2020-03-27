@@ -62,7 +62,8 @@
             "cp .env.pipelines .env",
             "@php artisan cache:clear",
             "@php artisan clear-compiled",
-            "@php artisan migrate"
+            "@php artisan migrate --force"
+
         ]
     }
 }
