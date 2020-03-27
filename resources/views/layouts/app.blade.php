@@ -35,7 +35,7 @@
         <nav id="sidebar">
             <div class="sidebar-header">
                 <h3>
-                    <a class="navbar-brand" href="{{ route('home') }}">
+                    <a class="navbar-brand" href="{{ url('/') }}">
                         {{ $user->grade->name }}
                     </a>
                 </h3>

@@ -16,10 +16,15 @@ Auth::routes(['register' => false]);
 
 Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/', function () {
-        return redirect("home");
+
+        if(\Auth::user()->is_student) {
+            return redirect()->route("student.home");
+        } else {
+            return redirect("home");
+        }
     });
 
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/student', 'Students\HomeController@index')->name('student.home');
 
     Route::get('/courses/{id}', 'Students\CourseController@show')->name('courses.show');
 
