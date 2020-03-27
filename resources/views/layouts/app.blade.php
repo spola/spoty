@@ -36,82 +36,21 @@
             <div class="sidebar-header">
                 <h3>
                     <a class="navbar-brand" href="{{ route('home') }}">
-                        {{ $user->class_name }}
+                        {{ $user->grade->name }}
                     </a>
                 </h3>
             </div>
 
             <ul class="list-unstyled components">
+                @foreach($courses as $course)
                 <li class="icons">
-                    <a href="#">
-                        <img src="images/artes.png" class="course_icon"/>
+                    <a href="{{route('courses.show', [$course])}}">
+                        <img src="{{URL::asset('/images/' . $course->icon)}}" class="course_icon"/>
                         <br/>
-                        Artes
+                        {{$course->name}}
                     </a>
                 </li>
-                <li class="icons">
-                    <a href="#">
-                        <img src="images/biologia.png" class="course_icon"/>
-                        <br/>
-                        Biología
-                    </a>
-                </li>
-                <li class="icons">
-                    <a href="#">
-                        <img src="images/fisica.png" class="course_icon"/>
-                        <br/>
-                        Física
-                    </a>
-                </li>
-                <li class="icons">
-                    <a href="#">
-                        <img src="images/geografia.png" class="course_icon"/>
-                        <br/>
-                        Geografía
-                    </a>
-                </li>
-                <li class="icons">
-                    <a href="#">
-                        <img src="images/lengua-inglesa.png" class="course_icon"/>
-                        <br/>
-                        Inglés
-                    </a>
-                </li>
-                <li class="icons">
-                    <a href="#">
-                        <img src="images/lenguaje.png" class="course_icon"/>
-                        <br/>
-                        Lenguaje
-                    </a>
-                </li>
-                <li class="icons">
-                    <a href="#">
-                        <img src="images/matematicas.png" class="course_icon"/>
-                        <br/>
-                        Matemática
-                    </a>
-                </li>
-                <li class="icons">
-                    <a href="#">
-                        <img src="images/musculo.png" class="course_icon"/>
-                        <br/>
-                        Ed. Física
-                    </a>
-                </li>
-                <li class="icons">
-                    <a href="#">
-                        <img src="images/quimica.png" class="course_icon"/>
-                        <br/>
-                        Química
-                    </a>
-                </li>
-                <li class="icons">
-                    <a href="#">
-                        <img src="images/tecnologia.png" class="course_icon"/>
-                        <br/>
-                        Tecnología
-                    </a>
-                </li>
+                @endforeach
             </ul>
 <?php /*
             <ul class="list-unstyled CTAs">
@@ -157,7 +96,7 @@
                             @else
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::user()->name }} <span class="caret"></span>
+                                        {{ $user->name }} <span class="caret"></span>
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
