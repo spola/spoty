@@ -156,6 +156,11 @@ body {
   height: 60px;
 }
 
+.course .list-group-item small,
+.course .list-group-item fas {
+  color: #999;
+}
+
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */

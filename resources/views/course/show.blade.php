@@ -18,9 +18,33 @@
 
     <div class="row">
         <div class="col">
-            <h3>Guías con entrega</h3>
+            <h3>Actividades</h3>
         </div>
     </div>
+
+    <div class="list-group">
+        @foreach($course->activities as $activity)
+        <a href="{{$activity->link}}" class="list-group-item d-flex justify-content-between align-items-center" {{$activity->new_tab?"target='blank'":""}}>
+            <div class="col-1">
+                <i class="fas fa-square"></i>
+            </div>
+            <div class="col-8">
+
+                {{$activity->title}}
+                <br/>
+                <small>{{$activity->description}}</small>
+            </div>
+            <div class="col-2">
+                <small>{{$activity->due_date}}</small>
+            </div>
+            <div class="col-1">
+                <i class="fas fa-download"></i>
+            </div>
+        </a>
+        @endforeach
+    </div>
+
+    
 
 </section>
 

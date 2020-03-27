@@ -23,4 +23,9 @@ class Course extends Model
     {
         return $this->belongsTo('App\Grade');
     }
+
+    public function activities()
+    {
+        return $this->hasMany('App\Activity');
+    }
 }
