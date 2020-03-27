@@ -34,7 +34,11 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3>{{ config('app.name', 'Laravel') }}</h3>
+                <h3>
+                    <a class="navbar-brand" href="{{ route('home') }}">
+                        {{ $user->class_name }}
+                    </a>
+                </h3>
             </div>
 
             <ul class="list-unstyled components">
@@ -54,7 +58,7 @@
                 </li>
                 <li class="icons">
                     <a href="#">
-                        <img src="images/fisica.svg" class="course_icon"/>
+                        <img src="images/fisica.png" class="course_icon"/>
                         <br/>
                         Física
                     </a>
@@ -82,7 +86,7 @@
                 </li>
                 <li class="icons">
                     <a href="#">
-                        <img src="images/matematica.svg" class="course_icon"/>
+                        <img src="images/matematicas.png" class="course_icon"/>
                         <br/>
                         Matemática
                     </a>
@@ -126,9 +130,8 @@
 
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
                 <div class="container">
-                    <a class="navbar-brand" href="{{ route('home') }}">
-                        {{ $user->class_name }}
-                    </a>
+
+                    <h3>{{ config('app.name', 'Laravel') }}</h3>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
                     </button>
