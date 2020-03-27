@@ -16,8 +16,8 @@ body {
 }
 
 #sidebar {
-  min-width: 100px;
-  max-width: 100px;
+  min-width: 80px;
+  max-width: 80px;
   background: #7386D5;
   color: #fff;
   transition: all 0.3s;
@@ -25,7 +25,7 @@ body {
 }
 
 #sidebar.active {
-  margin-left: -100px;
+  margin-left: -80px;
 }
 
 #sidebar .sidebar-header {
@@ -140,8 +140,8 @@ body {
 }
 
 #sidebar .course_icon {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
 }
 
 #sidebar .icons {
@@ -165,7 +165,7 @@ body {
 
 @media (max-width: 768px) {
   #sidebar {
-    margin-left: -100px;
+    margin-left: -80px;
   }
 
   #sidebar.active {
