@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'is_student', 'class_name'
+        'name', 'email', 'password', 'is_student', 'grade_id'
     ];
 
     /**
@@ -37,4 +37,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'is_student' => 'boolean',
     ];
+
+    public function grade()
+    {
+        return $this->belongsTo('App\Grade');
+    }
 }
