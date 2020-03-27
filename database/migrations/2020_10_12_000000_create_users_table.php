@@ -19,7 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('class_name')->nullable()->default(null);
+            $table->bigInteger('grade_id')->unsigned();
+            $table->foreign('grade_id')->references('id')->on('grades');
             $table->boolean('is_student');
             $table->rememberToken();
             $table->timestamps();
