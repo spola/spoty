@@ -29,16 +29,20 @@
                 <i class="fas fa-square"></i>
             </div>
             <div class="col-8">
-
                 {{$activity->title}}
+                <br/>
+                <small>{{$activity->published->format('d-m-Y')}}</small>
                 <br/>
                 <small>{{$activity->description}}</small>
             </div>
             <div class="col-2">
-                <small>{{$activity->due_date}}</small>
+            
+                <small>Fecha Entrega:</small><br/>
+                <i class="fas fa-skull-crossbones"></i>
+                <small>{{$activity->due_date->format('d-m-Y')}}</small>
             </div>
             <div class="col-1">
-                <i class="fas fa-download"></i>
+                <i class="fa fa-{{$activity->type}}"></i>
             </div>
         </a>
         @endforeach

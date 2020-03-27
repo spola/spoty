@@ -12,7 +12,7 @@ class Activity extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'description', 'due_date', 'link', 'course_id', 'new_tab'
+        'title', 'description', 'due_date', 'link', 'course_id', 'new_tab', 'published', 'type', 'scored'
     ];
 
      /**
@@ -22,7 +22,9 @@ class Activity extends Model
      */
     protected $casts = [
         'due_date' => 'datetime',
+        'published' => 'datetime',
         'new_tab' => 'boolean',
+        'scored' => 'boolean',
     ];
 
 
