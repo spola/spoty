@@ -14,7 +14,7 @@ class AddPublishedToActivitiesTable extends Migration
     public function up()
     {
         Schema::table('activities', function (Blueprint $table) {
-            $table->datetime('published')->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('published')->default(\DB::raw('CURRENT_TIMESTAMP'));
 
             $table->enum('type', array('file','video','link'))->default('file');
 
