@@ -16,7 +16,28 @@
 
     @yield('styles')
 
-
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #17a2b8;
+            /* background-color: #7386D5; */
+            height: 100vh;
+        }
+        .container > .row  .card-box {
+            margin-top: 120px;
+            max-width: 600px;
+            height: 320px;
+            border: 1px solid #9C9C9C;
+            background-color: #EAEAEA;
+        }
+        .container > .row .card-box form {
+            padding: 20px;
+        }
+        .container > .row .card-box form #register-link {
+            margin-top: -85px;
+        }
+    </style>
 </head>
 <body>
         @yield('content')

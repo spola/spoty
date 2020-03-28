@@ -1,36 +1,14 @@
 @extends('layouts.guest')
 
 @section('styles')
-<style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #17a2b8;
-            /* background-color: #7386D5; */
-            height: 100vh;
-        }
-        #login .container #login-row #login-column #login-box {
-            margin-top: 120px;
-            max-width: 600px;
-            height: 320px;
-            border: 1px solid #9C9C9C;
-            background-color: #EAEAEA;
-        }
-        #login .container #login-row #login-column #login-box #login-form {
-            padding: 20px;
-        }
-        #login .container #login-row #login-column #login-box #login-form #register-link {
-            margin-top: -85px;
-        }
-    </style>
 @endsection
 @section('content')
-    <div id="login">
+    <div id="principal">
         <h1>&nbsp;</h1>
         <div class="container">
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
-                    <div id="login-box" class="col-md-12">
+                    <div id="login-box" class="col-md-12 card-box">
                         <form id="login-form" class="form" method="POST" action="{{ route('login') }}">
                             @csrf
                             <h3 class="text-center text-info">{{ config('app.name', 'Laravel') }}</h3>
