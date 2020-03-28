@@ -89,52 +89,11 @@
         @endforeach
     </ul>
 </section>
+@endsection
+
+@section("scripts")
 <script src="{{asset('js/course.js')}}"></script>
 @endsection
 
-
-<?php 
-/*
-<div class="col-1">
-                <div class="register_activity" data-activity="{{$activity->id}}">
-                    <i class="far fa-square fa-2x" title="Marca tu trabajo como entregado" data-toggle="tooltip" data-placement="top"></i>
-                    <i class="far fa-check-square d-none fa-2x"></i>
-                </div>
-            </div>
-            <!-- Style al peo, no reclamar -->
-            <a href="{{$activity->link}}" class="d-flex justify-content-between align-items-center" {
-	{
-		$activity->new_tab?"target='blank'":""
-	}
-}
->
-            <div class="col-8" style="border-left: solid;">
-                {
-	{
-		$activity->title
-	}
-}
-<br/>
-                <small>@formatDate($activity->published)</small>
-                <br/>
-                <small>{
-	{
-		$activity->description
-	}
-}
-</small>
-            </div>
-            <div class="col-2">
-                @if(!is_null($activity->due_date))
-                <small>Fecha Entrega:</small><br/>
-                <i class="fas fa-skull-crossbones"></i>
-                <small>@formatDate($activity->due_date)</small>
-                @endif
-            </div>
-            <div class="col-1">
-                <i class="fa fa-{{$activity->type}} fa-2x"></i>
-            </div>
-            </a>
-        */?>
         
 
