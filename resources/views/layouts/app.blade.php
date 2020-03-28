@@ -43,18 +43,6 @@
                     </a>
                 </h3>
             </div>
-
-            <ul class="list-unstyled components">
-                @foreach($courses as $course)
-                <li class="icons">
-                    <a href="{{route('courses.show', [$course])}}">
-                        <img src="{{URL::asset('/images/' . $course->icon)}}" class="course_icon"/>
-                        <br/>
-                        {{$course->name}}
-                    </a>
-                </li>
-                @endforeach
-            </ul>
 <?php /*
             <ul class="list-unstyled CTAs">
                 <li>

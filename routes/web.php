@@ -28,6 +28,9 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
     Route::get('/courses/{course}', 'Students\CourseController@show')->name('courses.show');
 
+    Route::get('/change-password',  'Auth\ChangePasswordController@index')->name('change.password');
+    Route::post('/change-password', 'Auth\ChangePasswordController@store')->name('change.password.store');
+
 });
 
 
