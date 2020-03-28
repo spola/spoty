@@ -31,7 +31,7 @@
             <div class="col-8">
                 {{$activity->title}}
                 <br/>
-                <small>{{$activity->published->format('d-m-Y')}}</small>
+                <small>@formatDate($activity->published)</small>
                 <br/>
                 <small>{{$activity->description}}</small>
             </div>
@@ -39,7 +39,7 @@
                 @if(!is_null($activity->due_date))
                 <small>Fecha Entrega:</small><br/>
                 <i class="fas fa-skull-crossbones"></i>
-                <small>{{$activity->due_date->format('d-m-Y')}}</small>
+                <small>@formatDate($activity->due_date)</small>
                 @endif
             </div>
             <div class="col-1">
