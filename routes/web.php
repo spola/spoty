@@ -16,9 +16,6 @@ Auth::routes(['register' => false]);
 
 Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/', function () {
-
-        Illuminate\Support\Facades\Log::info("Estoy en el /");
-
         if(\Auth::user()->is_student) {
             return redirect()->route("student.home");
         } else {

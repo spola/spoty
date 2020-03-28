@@ -39,8 +39,6 @@ class ResetPasswordController extends Controller
     }
 
     public function redirectTo() {
-        Log::info("Redirigiendo hacia /");
-
         return "/";
     }
 }
