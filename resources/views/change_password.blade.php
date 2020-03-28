@@ -47,7 +47,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <a href="{{url('/')}}" class="btn btn-default">
-                                    Cancelar
+                                    Volver
                                 </a>
                                 <button type="submit" class="btn btn-primary">
                                     Guardar
