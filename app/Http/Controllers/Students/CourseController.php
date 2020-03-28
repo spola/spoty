@@ -17,6 +17,11 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
+        $user = \Auth::user();
+
+        if($user->grade_id != $course->grade_id) {
+            return redirect("/");
+        }
         $ids = $course->activities->pluck('id');
         $checked = UserActivity::select('activity_id')
                         ->whereIn('activity_id', $ids)
