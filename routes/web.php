@@ -33,6 +33,11 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::put('/activities/register/{activity}', 'Students\ActivityController@register');
     Route::delete('/activities/unregister/{activity}', 'Students\ActivityController@unregister');
 
+    Route::get('/students/admin', 'Students\AdminController@index')->name('student.admin');
+    Route::get('/students/admin/invite', 'Students\AdminController@invite')->name('student.admin.create');
+    Route::post('/students/admin/invite', 'Students\AdminController@store')->name('student.admin.store');
+
+    
 });
 
 

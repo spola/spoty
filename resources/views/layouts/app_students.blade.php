@@ -43,6 +43,7 @@
                 </h3>
             </div>
 
+            @if(isset($courses))
             <ul class="list-unstyled components">
                 @foreach($courses as $course)
                 <li class="icons">
@@ -54,6 +55,7 @@
                 </li>
                 @endforeach
             </ul>
+            @endif
 <?php /*
             <ul class="list-unstyled CTAs">
                 <li>
@@ -102,6 +104,11 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        @if($user->is_grade_admin)
+                                        <a class="dropdown-item" href="{{ route('student.admin') }}">
+                                            Alumnos
+                                        </a>
+                                        @endif
                                         <a class="dropdown-item" href="{{ route('change.password') }}">
                                             Cambiar Contraseña
                                         </a>

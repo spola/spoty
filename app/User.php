@@ -36,6 +36,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'is_student' => 'boolean',
+        'is_grade_admin' => 'boolean',
     ];
 
     public function grade()
