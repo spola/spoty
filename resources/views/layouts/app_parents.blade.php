@@ -38,12 +38,21 @@
             <div class="sidebar-header">
                 <h3>
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ __('Home') }}
+                        &nbsp;
                     </a>
                 </h3>
             </div>
+            
+
 
             <ul class="list-unstyled components">
+            <li class="icons">
+                    <a href="{{ url('/') }}">
+                        <i class="fas fa-chart-line"></i>
+                        <br/>
+                        Resumen
+                    </a>
+                </li>
                 <li class="icons">
                     <a href="{{route('parents.calendars')}}">
                         <i class="far fa-calendar-alt"></i>
@@ -74,7 +83,7 @@
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
                 <div class="container">
 
-                    <h3>{{ config('app.name', 'Laravel') }}</h3>
+                    <img src="{{asset('images/logo_superior.png')}}" style="height: 60px;">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
                     </button>
