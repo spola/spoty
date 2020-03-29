@@ -48,11 +48,11 @@ class User extends Authenticatable
 
     public function childrens()
     {
-        return $this->belongsToMany('App\User', 'student_parent', 'parent_id', 'student_id');
+        return $this->belongsToMany('App\User', 'student_parent', 'parent_id', 'student_id')->withTimestamps();;
     }
 
     public function parents()
     {
-        return $this->belongsToMany('App\User', 'student_parent', 'student_id', 'parent_id');
+        return $this->belongsToMany('App\User', 'student_parent', 'student_id', 'parent_id')->withTimestamps();;
     }
 }
