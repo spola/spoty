@@ -40,17 +40,16 @@
                                     </span>
                                 </label>
                                 */?>
-                                <br/>
                                 <input type="submit" name="submit" class="btn btn-info btn-md" value="{{ __('Login') }}">
-                                
+                                <div id="register-link" class="text-right">
+                                    @if (Route::has('password.request'))
+                                        <a class="btn btn-link" href="{{ route('password.request') }}">
+                                            {{ __('Forgot Your Password?') }}
+                                        </a>
+                                    @endif
+                                </div>
                             </div>
-                            <div id="register-link" class="text-right">
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
+                            
                         </form>
                     </div>
                 </div>

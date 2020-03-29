@@ -35,8 +35,14 @@
             padding: 20px;
         }
         .container > .row .card-box form #register-link {
-            margin-top: -85px;
+            margin-top: 0px;
+            display:inline;
         }
+        .container > .row .card-box form #register-link .btn-link{
+            font-size:11px;
+
+        }
+        
     </style>
 </head>
 <body>
