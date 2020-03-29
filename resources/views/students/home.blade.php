@@ -23,7 +23,7 @@
     ?>
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <iframe src="https://calendar.google.com/calendar/embed?src=38b020ajctj82m6n7jgr8r75c4%40group.calendar.google.com&ctz=America%2FSantiagophp" seamless="seamless" style="display:block; width:100%; height:100vh;" frameborder="0" scrolling="no"></iframe>
+            <iframe src="{{$grade->calendar}}" seamless="seamless" style="display:block; width:100%; height:100vh;" frameborder="0" scrolling="no"></iframe>
         </div>
     </div>
 @endsection

@@ -12,6 +12,6 @@ class Grade extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
+        'name', 'calendar',
     ];
 }
