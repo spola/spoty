@@ -3,15 +3,20 @@
 @section('styles')
 @endsection
 @section('content')
-    <div id="principal">
+    <div id="principal" class="login">
         <h1>&nbsp;</h1>
         <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <img src="{{asset('images/logo_externo.png')}}" class="logo_externo"/>
+                </div>
+            </div>
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12 card-box">
                         <form id="login-form" class="form" method="POST" action="{{ route('login') }}">
                             @csrf
-                            <h3 class="text-center text-info">{{ config('app.name', 'Laravel') }}</h3>
+                            <!-- <h3 class="text-center text-info">{{ config('app.name', 'Laravel') }}</h3> -->
                             <div class="form-group">
                                 <label for="email" class="text-info">{{ __('E-Mail Address') }}:</label><br>
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>

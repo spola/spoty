@@ -42,6 +42,14 @@
             font-size:11px;
 
         }
+
+        .logo_externo {
+            width: 300px;
+        }
+
+        .login .container > .row .card-box {
+            margin-top:0;
+        }
         
     </style>
 </head>
