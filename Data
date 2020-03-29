@@ -15,6 +15,10 @@ Música
 App\Grade::create(['name'=>'8B'])
 User::create([ 'name'=> 'Paulette Arp', 'email' => 'paulette.arp@gmail.com', 'password'=>bcrypt('secret'), 'is_student'=>true, 'grade_id' => '1' ])
 
+User::create([ 'name'=> 'Sergio Pola', 'email' => 'yo@sergiopo.la', 'password'=>bcrypt('19791979'), 'is_parent'=>true, 'is_student' => false ])
+User::create([ 'name'=> 'Nataly Cisternas', 'email' => 'naty.cisternasd@gmail.com', 'password'=>bcrypt('12345678'), 'is_parent'=>true, 'is_student' => false ])
+
+
 App\Course::create(['name'=>'Artes', 'icon'=>'artes.png',  'grade_id' => 1]);
 App\Course::create(['name'=>'Biología', 'icon'=>'biologia.png',  'grade_id' => 1]);
 App\Course::create(['name'=>'Física', 'icon'=>'fisica.png',  'grade_id' => 1]);
