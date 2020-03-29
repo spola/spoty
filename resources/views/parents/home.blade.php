@@ -77,7 +77,7 @@
             </div>
             <div class="row">
             @foreach($totales as $course)
-                <div class="col-md-3 col-xl-2">
+                <div class="col-md-4 col-xl-3">
                     <div class="card order-card {{ $course->respondidas_total_evaluadas == $course->total_evaluadas ? 'bg-c-green':'bg-c-blue' }} ">
                         <div class="card-block">
                             <h3 class="m-b-20">
