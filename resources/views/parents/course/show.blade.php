@@ -31,7 +31,7 @@
                     <td>{{$result->due_date}}</td>
                     <td>{{$result->scored?"si":""}}</td>
                     <td style="color:green">
-                        @if($result->ua_id != null)
+                        @if($result->resp_id != null)
                         <i class="fa fa-check fa-2x"></i>    
                         @endif
                     </td>

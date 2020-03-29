@@ -31,14 +31,12 @@ class GradeController extends Controller
         */
 
         $queryStr = "SELECT 
-                        a.course_id, c.name, a.due_date, a.scored, ua.id as ua_id, a.id, ua.created_at, c.icon, a.title
+                        a.course_id, c.name, a.due_date, a.scored, a.id, c.icon, a.title,
+                        (select ua.id from user_activities ua where ua.activity_id = a.id and ua.user_id = :user and ua.deleted_at is null) as resp_id
                     FROM activities a 
                         JOIN courses c ON a.course_id = c.id
-                        LEFT JOIN user_activities ua ON a.id = ua.activity_id
                     WHERE
                         c.grade_id = :grade_id
-                        AND ua.deleted_at IS null 
-                        AND (ua.user_id = :user OR ua.user_id is null)
                     ORDER BY a.course_id, a.published";
 
         $results = \DB::select( \DB::raw($queryStr), [
