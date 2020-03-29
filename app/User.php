@@ -44,4 +44,15 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Grade');
     }
+
+
+    public function childrens()
+    {
+        return $this->belongsToMany('App\User', 'student_parent', 'parent_id', 'student_id');
+    }
+
+    public function parents()
+    {
+        return $this->belongsToMany('App\User', 'student_parent', 'student_id', 'parent_id');
+    }
 }

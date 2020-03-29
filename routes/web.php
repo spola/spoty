@@ -18,6 +18,8 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/', function () {
         if(\Auth::user()->is_student) {
             return redirect()->route("student.home");
+        } else if(\Auth::user()->is_parent) {
+            return redirect()->route("parents.home");
         } else {
             return redirect("home");
         }
@@ -37,7 +39,12 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/students/admin/invite', 'Students\AdminController@invite')->name('student.admin.create');
     Route::post('/students/admin/invite', 'Students\AdminController@store')->name('student.admin.store');
 
-    
 });
 
+Route::group(['middleware' => ['web', 'auth']], function () {
+    Route::get('/parent', 'Parents\HomeController@index')->name('parents.home');
+    Route::get('/parent/grade/{grade}', 'Parents\GradeController@show')->name('parents.grade.show');
 
+
+
+});
