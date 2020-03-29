@@ -158,6 +158,10 @@ $sidebar-icon-width: 30px;
         width: $sidebar-icon-width * 2;
         height: $sidebar-icon-width * 2;
     }
+    .course_icon.list {
+        width: $sidebar-icon-width;
+        height: $sidebar-icon-width;
+    }
 
     .list-group-item {
 

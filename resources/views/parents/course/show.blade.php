@@ -42,7 +42,8 @@
                 <div class="widget-content p-0">
                     <div class="widget-content-wrapper">
                         <div class="widget-content-left">
-                            {{$result->name}} @if($result->scored) <small>con nota</small>@endif
+                            <img src="{{asset('images/' . $result->icon) }}" class="course_icon list" />
+                            {{$result->name}} @if($result->scored) <small class="text-danger">con nota</small>@endif
                         </div>
                         <div class="widget-content-right">
                             @if(!is_null($result->due_date))
@@ -94,7 +95,8 @@
                 <div class="widget-content p-0">
                     <div class="widget-content-wrapper">
                         <div class="widget-content-left">
-                            {{$result->name}} @if($result->scored) <small>con nota</small>@endif
+                            <img src="{{asset('images/' . $result->icon) }}" class="course_icon list" />
+                            {{$result->name}} @if($result->scored) <small class="text-danger">con nota</small>@endif
                         </div>
                         <div class="widget-content-right">
                             @if(!is_null($result->due_date))
