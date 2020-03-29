@@ -1,6 +1,13 @@
 @extends('layouts.app_parents')
 
 @section('content')
+<div class="row justify-content-left">
+    <div class="col-md-12">
+        <a href="{{url('/')}}">
+        <i class="fas fa-arrow-circle-left"></i>
+        </a>
+    </div>
+</div>
 <div class="row justify-content-center">
     <div class="col-md-12">
         <h1>{{$grade->name}} - {{$student->name}}</h1>
