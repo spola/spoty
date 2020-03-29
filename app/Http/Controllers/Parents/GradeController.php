@@ -49,7 +49,7 @@ class GradeController extends Controller
         $doing = [];
 
         foreach($results as $result) {
-            $result->due_date = Carbon::parse($result->due_date);
+            $result->due_date = $result->due_date == null ? null : Carbon::parse($result->due_date);
 
             if(isset($result->resp_id)) {
                 $done[] = $result;
