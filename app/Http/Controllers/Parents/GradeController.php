@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\UserActivity;
 use App\Activity;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 
 class GradeController extends Controller
@@ -44,11 +45,25 @@ class GradeController extends Controller
             'user' => $student->id,
         ]);
 
+        $done = [];
+        $doing = [];
+
+        foreach($results as $result) {
+            $result->due_date = Carbon::parse($result->due_date);
+
+            if(isset($result->resp_id)) {
+                $done[] = $result;
+            } else {
+                $doing[]= $result;
+            }
+        }
+
 
         return view("parents.course.show", [
             'grade'     => $grade,
             'student'   => $student,
-            'results'   => $results
+            'done'   => $done,
+            'doing' => $doing
         ]);
     }
 }
