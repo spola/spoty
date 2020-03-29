@@ -25,3 +25,24 @@ App\Course::create(['name'=>'Matemática', 'icon'=>'matematicas.png',  'grade_id
 App\Course::create(['name'=>'Ed. Física', 'icon'=>'musculo.png',  'grade_id' => 1]);
 App\Course::create(['name'=>'Química', 'icon'=>'quimica.png',  'grade_id' => 1]);
 App\Course::create(['name'=>'Tecnología', 'icon'=>'tecnologia.png',  'grade_id' => 1]);
+
+-----------------------------
+SELECT 
+(SELECT count(1) FROM user_activities ua where ua.activity_id = a.id and ua.deleted_at is null) > 0 as respondido,
+a.*,
+c.*
+
+FROM activities a 
+JOIN courses c on a.course_id = c.id
+
+WHERE c.grade_id = 1
+-----------------------------
+SELECT 
+	a.course_id, a.due_date, a.scored, c.name, ua.id, a.id
+FROM activities a 
+	JOIN courses c ON a.course_id = c.id
+	LEFT JOIN user_activities ua ON a.id = ua.activity_id
+WHERE
+	c.grade_id = 1
+    AND ua.deleted_at IS null 
+    AND (ua.user_id = 1 OR ua.user_id is null)
