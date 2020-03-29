@@ -132,10 +132,8 @@
     gtag('js', new Date());
 
     gtag('config', 'UA-161687583-2');
-    gtag('config', 'GA_MEASUREMENT_ID', {
-      'user_id': '{{$user->id}}'
-    });
     </script>
+
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
