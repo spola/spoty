@@ -43,6 +43,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
 Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/parent', 'Parents\HomeController@index')->name('parents.home');
+    Route::get('/parent/calendars', 'Parents\HomeController@calendars')->name('parents.calendars');
     Route::get('/parent/grade/{grade}', 'Parents\GradeController@show')->name('parents.grade.show');
 
 

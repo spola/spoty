@@ -60,5 +60,19 @@ class HomeController extends Controller
 		return view('parents/home', [
 		            'respuestas' => $respuesta
 		        ]);
-	}
+    }
+    
+
+    public function calendars() {
+		$user = \Auth::user();
+        
+        $grades = [];
+        foreach($user->childrens as $student) {
+            $grades[] = $student->grade;
+        }
+
+        return view('parents/calendars', [
+            'grades' => $grades
+        ]);
+    }
 }
