@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\User;
+use App\Mail\UserCreated;
+use \Mail;
 
 class UsersController extends Controller
 {
@@ -64,6 +66,9 @@ class UsersController extends Controller
         ]);
 
         $parent->childrens()->attach($student);
+
+        Mail::to($student)->send(new UserCreated());
+        Mail::to($parent)->send(new UserCreated());
 
         return redirect()->route('administration.users.create')->with('message', 'Creación correcta');
 
