@@ -61,4 +61,5 @@
             </div>
         </div>
     </div>
+    <!-- version {{config('app.version')}} -->
     @endsection

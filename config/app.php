@@ -15,6 +15,8 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    'version' => env('HEROKU_RELEASE_VERSION', 'v0'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
