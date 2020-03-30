@@ -129,6 +129,9 @@
                             @endguest
                         </ul>
                     </div>
+                    <a href="{{asset('SPOTY.pdf')}}" target="_blank" data-toggle="tooltip" data-placement="top" title="Instructivo de uso">
+                        <i class="fas fa-question-circle"></i>
+                    </a>
                 </div>
             </nav>
             <br/>
@@ -164,6 +167,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip()
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
             });
