@@ -19,7 +19,7 @@
         <div class="tab-content" id="myTabContent">
             @foreach($grades as $k => $grade)
             <div class="tab-pane fade show {{$k == 0?'active':''}}" id="content{{$grade->id}}" role="tabpanel" aria-labelledby="tab{{$grade->id}}">
-                <iframe src="{{$grade->calendar}}" seamless="seamless" style="display:block; width:100%; height:100vh;" frameborder="0" scrolling="no"></iframe>
+                <iframe src="{{str_replace('&amp;', '&', $grade->calendar)}}" seamless="seamless" style="display:block; width:100%; height:100vh;" frameborder="0" scrolling="no"></iframe>
             </div>
             @endforeach
         </div>
