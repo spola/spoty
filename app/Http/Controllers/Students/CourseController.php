@@ -25,7 +25,7 @@ class CourseController extends Controller
         $ids = $course->activities->pluck('id');
         $checked = UserActivity::select('activity_id')
                         ->whereIn('activity_id', $ids)
-                        ->where('student_id', $user->id)
+                        ->where('user_id', $user->id)
                         ->pluck('activity_id');
 
         return view("course.show", ['course' => $course, 'checked' => $checked]);
