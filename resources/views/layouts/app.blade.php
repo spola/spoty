@@ -39,7 +39,7 @@
             <div class="sidebar-header">
                 <h3>
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ $user->grade->name }}
+                        {{ isset($user->grade)?$user->grade->name : '' }}
                     </a>
                 </h3>
             </div>
