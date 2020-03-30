@@ -19,6 +19,8 @@ User::create([ 'name'=> 'Sergio Pola', 'email' => 'yo@sergiopo.la', 'password'=>
 User::create([ 'name'=> 'Nataly Cisternas', 'email' => 'naty.cisternasd@gmail.com', 'password'=>bcrypt('12345678'), 'is_parent'=>true, 'is_student' => false ])
 
 
+Course::find(11)->update(['teacher_name'=> 'Ricardo Diaz Vega',  'teacher_email' => 'diazvegaricardo20@gmail.com' ])
+
 App\Course::create(['name'=>'Artes', 'icon'=>'artes.png',  'grade_id' => 1]);
 App\Course::create(['name'=>'Biología', 'icon'=>'biologia.png',  'grade_id' => 1]);
 App\Course::create(['name'=>'Física', 'icon'=>'fisica.png',  'grade_id' => 1]);
