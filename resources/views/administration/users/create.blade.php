@@ -45,6 +45,24 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">Grades</label>
+
+                            <div class="col-md-6">
+                                <select class="custom-select custom-select-lg mb-3 @error('grades') is-invalid @enderror" name="grades" id="grades" value="{{ old('grades') }}">
+                                    @foreach($grades as $key => $grade)
+                                    <option value="{{$key}}">{{$grade}}</option>
+                                    @endforeach
+                                </select>
+
+                                @error('grades')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
                         <h1>Apoderado</h1>
 
                         <div class="form-group row">

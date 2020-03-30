@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\User;
+use App\Grade;
 use App\Mail\UserCreated;
 use \Mail;
 
@@ -28,7 +29,11 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('administration.users.create');
+        $grades = Grade::all()->pluck('name', 'id');
+
+        return view('administration.users.create', [
+            'grades' => $grades
+        ]);
     }
 
     /**
@@ -39,11 +44,13 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'parent_name' => ['required', 'string', 'max:255'],
             'parent_email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+            'grades' => ['required', 'string']
         ]);
 
         $data = $request->all();
@@ -53,7 +60,7 @@ class UsersController extends Controller
             'email' => $data['email'],
             'password'=>bcrypt('12345678'),
             'is_student'=>true,
-            'grade_id' => '1'
+            'grade_id' => $data['grade']
         ]);
 
         $parent = User::create([ 
