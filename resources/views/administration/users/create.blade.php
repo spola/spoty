@@ -8,6 +8,11 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
+                    @if (session('message'))
+                        <div class="alert alert-success">
+                            {{ session('message') }}
+                        </div>
+                    @endif
                     <form method="POST" action="{{ route('administration.users.create') }}">
                         @csrf
 
@@ -72,6 +77,9 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
+                                <a href="{{url('/')}}" class="btn btn-default">
+                                    {{__('Cancel')}}
+                                </a>
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>

@@ -115,6 +115,11 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        @if($user->is_superadmin)
+                                        <a class="dropdown-item" href="{{ route('administration.users.create') }}">
+                                            Invitar Padres
+                                        </a>
+                                        @endif
                                         @if($user->is_grade_admin)
                                         <a class="dropdown-item" href="{{ route('student.admin') }}">
                                             Alumnos
