@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'is_student', 'grade_id', 'is_parent',
+        'name', 'email', 'password', 'is_student', 'grade_id', 'is_parent', 'is_grade_admin', 'is_superadmin'
     ];
 
     /**
@@ -38,6 +38,7 @@ class User extends Authenticatable
         'is_student' => 'boolean',
         'is_grade_admin' => 'boolean',
         'is_parent' => 'boolean',
+        'is_superadmin' => 'boolean',
     ];
 
     public function grade()

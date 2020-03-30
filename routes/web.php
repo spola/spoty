@@ -49,3 +49,9 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
 
 });
+
+Route::group(['middleware' => ['web', 'auth', 'auth.administration']], function () {
+
+    Route::get('/administration/users/create', 'Administration\UsersController@create')->name('administration.users.create');
+    Route::post('/administration/users/create', 'Administration\UsersController@store');
+});
