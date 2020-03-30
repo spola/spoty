@@ -1,10 +1,28 @@
 @extends('layouts.app_students')
 @section('content')
 <section class="course">
-    <h1 class="mt-0">
-        <img src="{{URL::asset('/images/' . $course->icon)}}" class="course_icon" class="mr-3 course_icon"/>
-        {{$course->name}}
-    </h1>
+    <div class="row">
+        <div class="col-md-7 col-sm-12">
+            <h1 class="mt-0">
+                <img src="{{URL::asset('/images/' . $course->icon)}}" class="course_icon" class="mr-3 course_icon"/>
+                {{$course->name}}
+            </h1>
+        </div>
+        <div class="col-md-3 col-sm-12">
+            @if(isset($course->teacher_name))
+            <i class="fas fa-chalkboard-teacher"></i> {{$course->teacher_name}}
+            <br/>
+            @endif
+            @if(isset($course->teacher_email))
+            <i class="far fa-envelope"></i> <a href="mailto:{{$course->teacher_email}}">{{$course->teacher_email}}</a>
+            <br/>
+            @endif
+            @if(isset($course->teacher_phone))
+            <i class="fas fa-phone-alt"></i> <a href="tel:{{$course->teacher_phone}}">{{$course->teacher_phone}}</a>
+            @endif
+        </div>
+    </div>
+    
     <div class="row">
         <div class="col">
         {!! $course->content !!}
