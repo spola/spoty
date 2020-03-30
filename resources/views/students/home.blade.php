@@ -23,7 +23,7 @@
     ?>
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <iframe src="{{$grade->calendar}}" seamless="seamless" style="display:block; width:100%; height:100vh;" frameborder="0" scrolling="no"></iframe>
+            <iframe src="{{str_replace('&amp;', '&', $grade->calendar)}}" seamless="seamless" style="display:block; width:100%; height:100vh;" frameborder="0" scrolling="no"></iframe>
         </div>
     </div>
 @endsection
