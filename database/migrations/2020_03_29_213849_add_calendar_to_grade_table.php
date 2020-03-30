@@ -14,7 +14,7 @@ class AddCalendarToGradeTable extends Migration
     public function up()
     {
         Schema::table('grades', function (Blueprint $table) {
-            $table->string('calendar')->nullable();
+            $table->text('calendar')->nullable();
         });
     }
 
