@@ -60,7 +60,7 @@ class UsersController extends Controller
             'email' => $data['email'],
             'password'=>bcrypt('12345678'),
             'is_student'=>true,
-            'grade_id' => $data['grade']
+            'grade_id' => $data['grades']
         ]);
 
         $parent = User::create([ 
