@@ -10,7 +10,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -42,11 +42,11 @@
                     </a>
                 </h3>
             </div>
-            
+
 
 
             <ul class="list-unstyled components">
-            <li class="icons">
+                <li class="icons">
                     <a href="{{ url('/') }}">
                         <i class="fas fa-chart-line"></i>
                         <br/>
@@ -61,6 +61,22 @@
                     </a>
                 </li>
             </ul>
+            @if(isset($grades))
+            <div class="text-center">
+                <span>Admin</span>
+            </div>
+            <ul class="list-unstyled components">
+                @foreach($grades as $grade)
+                <li class="icons">
+                    <a href="{{ route('administration.grades.activity.add', ['grade' => $grade->id]) }}">
+                        <i class="fas fa-sliders-h"></i>
+                        <br/>
+                        {{ $grade->name }}
+                    </a>
+                </li>
+                @endforeach
+            </ul>
+            @endif
 
             @if(isset($courses))
             <ul class="list-unstyled components">
@@ -177,6 +193,6 @@
     </script>
 
     @yield("scripts")
-    
+
 </body>
 </html>
