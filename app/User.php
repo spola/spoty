@@ -56,4 +56,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\User', 'student_parent', 'student_id', 'parent_id')->withTimestamps();;
     }
+
+    public function adminGrades()
+    {
+        return $this->belongsToMany('App\Grade', 'admin_grades', 'user_id', 'grade_id')->withTimestamps();;
+    }
 }
