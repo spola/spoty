@@ -30,17 +30,14 @@ class OnlyGradeAdministratorIfAuthenticated
             ]);
         });
 */
-//dd($grade);
 
         if(!isset($grade)) {
-            dd("redirigiendo por falta de grade");
             return redirect('/');
         }
 
         $cant = $user->adminGrades()->where('grade_id', $grade)->count();
 
         if ( $user == null || $cant < 1 ) {
-            dd("No hay grados suficientes");
             return redirect('/');
         }
 
