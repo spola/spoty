@@ -30,5 +30,7 @@ class BladeServiceProvider extends ServiceProvider
 
             return "<?php echo  isset($date)?($date)->format('d-m-Y'):'' ?>";
         });
+
+        Blade::component('components.user_menu', 'user_menu');
     }
 }
