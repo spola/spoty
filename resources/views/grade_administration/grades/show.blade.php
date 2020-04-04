@@ -1,4 +1,4 @@
-@extends('layouts.app_parents')
+@extends($user->is_parent? 'layouts.app_parents' : 'layouts.app_students')
 
 @section('content')
 <div class="row justify-content-left">
@@ -10,7 +10,7 @@
 </div>
 <div class="row justify-content-center">
     <div class="col-md-12">
-        <h1>Administradción del curso {{$grade->name}}</h1>
+        <h1>Administración del curso {{$grade->name}}</h1>
     </div>
 </div>
 <div class="row justify-content-center course">
