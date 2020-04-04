@@ -61,7 +61,7 @@
                     </a>
                 </li>
             </ul>
-            @if(isset($grades))
+            @if(isset($grades) && !empty($grades) )
             <div class="text-center">
                 <span>Admin</span>
             </div>
