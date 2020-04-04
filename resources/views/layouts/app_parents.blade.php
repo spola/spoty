@@ -61,12 +61,12 @@
                     </a>
                 </li>
             </ul>
-            @if(isset($grades) && !empty($grades) )
+            @if(isset($admin_grades) && !empty($admin_grades) )
             <div class="text-center">
                 <span>Admin</span>
             </div>
             <ul class="list-unstyled components">
-                @foreach($grades as $grade)
+                @foreach($admin_grades as $grade)
                 <li class="icons">
                     <a href="{{ route('administration.grades.show', ['grade' => $grade->id]) }}">
                         <i class="fas fa-sliders-h"></i>

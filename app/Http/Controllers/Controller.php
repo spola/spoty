@@ -31,7 +31,7 @@ class Controller extends BaseController
                 ];
             }
 
-            View::share('grades', $grades);
+            View::share('admin_grades', $grades);
         }
 
 		return parent::callAction($method, $parameters);
