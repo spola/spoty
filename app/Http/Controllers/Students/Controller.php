@@ -18,6 +18,7 @@ class Controller extends BaseController
 
     public function callAction($method, $parameters)
 	{
+        //TODO: Debería sacarlo del modelo
         $user = Auth::user();
         $courses = Course::where('grade_id', $user->grade->id)->get();
 

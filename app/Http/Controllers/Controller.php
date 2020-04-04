@@ -17,12 +17,22 @@ class Controller extends BaseController
 
     public function callAction($method, $parameters)
 	{
-        /*
-		View::share('company', array(
-            'name'=> config('app.name', 'Laravel'),
-        ));
-        */
-		View::share('user', Auth::user());
+        $user = Auth::user();
+
+        if(isset($user)) {
+
+            View::share('user', $user);
+
+            $grades = [];
+            foreach($user->adminGrades as $grade) {
+                $grades[] = (object)[
+                    'id' => $grade->id,
+                    'name' => $grade->name
+                ];
+            }
+
+            View::share('grades', $grades);
+        }
 
 		return parent::callAction($method, $parameters);
 	}

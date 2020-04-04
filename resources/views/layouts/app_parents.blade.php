@@ -68,7 +68,7 @@
             <ul class="list-unstyled components">
                 @foreach($grades as $grade)
                 <li class="icons">
-                    <a href="{{ route('administration.grades.activity.add', ['grade' => $grade->id]) }}">
+                    <a href="{{ route('administration.grades.show', ['grade' => $grade->id]) }}">
                         <i class="fas fa-sliders-h"></i>
                         <br/>
                         {{ $grade->name }}

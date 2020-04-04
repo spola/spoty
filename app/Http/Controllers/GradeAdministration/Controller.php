@@ -18,18 +18,6 @@ class Controller extends BaseController
 
     public function callAction($method, $parameters)
 	{
-        $user = Auth::user();
-
-        $grades = [];
-        foreach($user->adminGrades as $grade) {
-            $grades[] = (object)[
-                'id' => $grade->id,
-                'name' => $grade->name
-            ];
-        }
-
-        View::share('grades', $grades);
-
 		return parent::callAction($method, $parameters);
 	}
 }
