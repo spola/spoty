@@ -58,7 +58,14 @@ Route::group(['middleware' => ['web', 'auth', 'auth.administration']], function 
 
 Route::group(['middleware' => ['web', 'auth', 'auth.administration.grade']], function () {
 
+    Route::bind('activity', function ($id) {
+        return App\Activity::withTrashed()->find($id);
+    });
+
     Route::get('/administration/grades/{grade}', 'GradeAdministration\GradeController@show')->name('administration.grades.show');
     Route::get('/administration/grades/{grade}/activity', 'GradeAdministration\GradeController@activity')->name('administration.grades.activity.add');
     Route::post('/administration/grades/{grade}/activity', 'GradeAdministration\GradeController@store')->name('administration.grades.activity.store');
+
+    Route::get('/administration/grades/{grade}/activity/{activity}', 'GradeAdministration\GradeController@activityEdit')->name('administration.grades.activity.edit');
+
 });

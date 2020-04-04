@@ -32,7 +32,7 @@
                 <div class="widget-content p-0">
                     <div class="widget-content-wrapper">
                         <div class="widget-content-left">
-                            <img src="{{asset('images/' . $result->icon) }}" class="course_icon list" />
+                            <img src="{{asset('images/' . $result->course->icon) }}" class="course_icon list" />
                             {{$result->name}} @if($result->scored) <small class="text-danger">con nota</small>@endif
                         </div>
                         <div class="widget-content-right">
@@ -42,29 +42,25 @@
                             <small>@formatDate($result->due_date)</small>
                             @endif
                         </div>
+                        <div class="widget-content-right" style="margin-left:15px">
+                            <a href="{{ route('administration.grades.activity.edit', ['grade'=>$grade, 'activity' => $result->id]) }}">
+                                <i class="fas fa-edit fa-2x"></i>
+                            </a>
+                        </div>
                     </div>
                     <div class="widget-content-wrapper">
                         <div class="widget-content-left mr-2" style="color:green">
-                            @if($result->resp_id != null)
-                                <i class="fa fa-check fa-2x" title="Marca tu trabajo como entregado" data-toggle="tooltip" data-placement="top"></i>
-                            @endif
                         </div>
                         <div class="widget-content-left">
                             <div class="widget-heading">
                                 {{$result->title}}
                             </div>
-                            {{--
-                            <small>@formatDate($activity->published)</small>
-                            <br/>
-                            <small class="widget-subheading">{{$activity->description}}</small>
-                            --}}
                         </div>
-
-                        {{--
                         <div class="widget-content-right">
-                            <i class="fa fa-{{$activity->type}} fa-2x"></i>
+                            @if($result->trashed())
+                            <i class="fas fa-eye-slash fa-2x"></i>
+                            @endif
                         </div>
-                        --}}
                     </div>
                 </div>
             </li>

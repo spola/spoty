@@ -52,6 +52,10 @@ class GradeController extends BaseController
             ->with("message", 'Actividad registrada');
     }
 
+    public function activityEdit(Grade $grade, Activity $activity) {
+        return "hola";
+    }
+
     /**
      * Display the specified resource.
      *
@@ -60,11 +64,12 @@ class GradeController extends BaseController
      */
     public function show(Grade $grade)
     {
-        $activities = Activity::join('courses', 'activities.course_id', '=', 'courses.id')
-            ->where('courses.grade_id', '=', $grade->id)
-            ->orderBy('published', "desc")
-            ->get();
+        $courses = $grade->courses()->select('id')->pluck('id')->toArray();
 
+        $activities = Activity::whereIn('course_id', $courses)
+            ->orderBy('published', "desc")
+            ->withTrashed()
+            ->get();
 
         return view('grade_administration.grades.show', [
             'grade' => $grade,
