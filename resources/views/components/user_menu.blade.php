@@ -10,11 +10,11 @@
         @endif
         @if($user->is_grade_admin)
         <a class="dropdown-item" href="{{ route('student.admin') }}">
+            <i class="fas fa-sliders-h"></i>
             Alumnos
         </a>
         @endif
         @if(isset($admin_grades) && !empty($admin_grades) )
-        <div class="dropdown-divider"></div>
             @foreach($admin_grades as $grade)
                 <a href="{{ route('administration.grades.show', ['grade' => $grade->id]) }}" class="dropdown-item">
                     <i class="fas fa-sliders-h"></i>

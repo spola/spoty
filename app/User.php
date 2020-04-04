@@ -61,4 +61,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Grade', 'admin_grades', 'user_id', 'grade_id')->withTimestamps();;
     }
+
+    public function isAdmin() {
+        return $this->is_grade_admin || $this->is_superadmin || !empty($this->adminGrades);
+    }
 }
