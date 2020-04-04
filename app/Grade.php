@@ -14,4 +14,14 @@ class Grade extends Model
     protected $fillable = [
         'name', 'calendar'
     ];
+
+    public function activities()
+    {
+        return $this->hasMany('App\Activity')->orderBy('published', "desc");
+    }
+
+    public function courses()
+    {
+        return $this->hasMany('App\Course')->orderBy('name', "asc");
+    }
 }
