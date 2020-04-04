@@ -1,4 +1,4 @@
-@extends('layouts.app_parents')
+@extends($user->is_parent? 'layouts.app_parents' : 'layouts.app_students')
 
 @section('content')
 <div class="container">
