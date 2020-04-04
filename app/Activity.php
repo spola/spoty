@@ -6,6 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Activity extends Model
 {
+
+    public static $TYPES = [
+        'file' => 'Archivos',
+        'video' => 'Video',
+        'link' => 'Enlace',
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -31,5 +38,5 @@ class Activity extends Model
     public function course()
     {
         return $this->belongsTo('App\Course');
-    } 
+    }
 }
