@@ -62,6 +62,7 @@ class GradeController extends BaseController
     {
         $activities = Activity::join('courses', 'activities.course_id', '=', 'courses.id')
             ->where('courses.grade_id', '=', $grade->id)
+            ->orderBy('published', "desc")
             ->get();
 
 
