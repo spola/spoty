@@ -55,3 +55,10 @@ Route::group(['middleware' => ['web', 'auth', 'auth.administration']], function 
     Route::get('/administration/users/create', 'Administration\UsersController@create')->name('administration.users.create');
     Route::post('/administration/users/create', 'Administration\UsersController@store');
 });
+
+Route::group(['middleware' => ['web', 'auth', 'auth.administration.grade']], function () {
+
+    Route::get('/administration/grades/{grade}', 'GradeAdministration\GradeController@show')->name('administration.grades.show');
+    Route::get('/administration/grades/{grade}/activity', 'GradeAdministration\GradeController@activity')->name('administration.grades.activity.add');
+    Route::post('/administration/grades/{grade}/activity', 'GradeAdministration\GradeController@store')->name('administration.grades.activity.store');
+});
