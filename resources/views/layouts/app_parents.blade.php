@@ -61,22 +61,6 @@
                     </a>
                 </li>
             </ul>
-            @if(isset($admin_grades) && !empty($admin_grades) )
-            <div class="text-center">
-                <span>Admin</span>
-            </div>
-            <ul class="list-unstyled components">
-                @foreach($admin_grades as $grade)
-                <li class="icons">
-                    <a href="{{ route('administration.grades.show', ['grade' => $grade->id]) }}">
-                        <i class="fas fa-sliders-h"></i>
-                        <br/>
-                        {{ $grade->name }}
-                    </a>
-                </li>
-                @endforeach
-            </ul>
-            @endif
 
             @if(isset($courses))
             <ul class="list-unstyled components">
@@ -114,48 +98,12 @@
 
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">
-                            <!-- Authentication Links -->
-                            @guest
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                                @if (Route::has('register'))
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                    </li>
-                                @endif
-                            @else
-                                <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ $user->name }} <span class="caret"></span>
-                                    </a>
-
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        @if($user->is_superadmin)
-                                        <a class="dropdown-item" href="{{ route('administration.users.create') }}">
-                                            Invitar Padres
-                                        </a>
-                                        @endif
-                                        @if($user->is_grade_admin)
-                                        <a class="dropdown-item" href="{{ route('student.admin') }}">
-                                            Alumnos
-                                        </a>
-                                        @endif
-                                        <a class="dropdown-item" href="{{ route('change.password') }}">
-                                            Cambiar Contraseña
-                                        </a>
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            @csrf
-                                        </form>
-                                    </div>
-                                </li>
-                            @endguest
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ $user->name }} <span class="caret"></span>
+                                </a>
+                                @user_menu @enduser_menu
+                            </li>
                         </ul>
                     </div>
                     <a href="{{asset('SPOTY.pdf')}}" target="_blank" data-toggle="tooltip" data-placement="top" title="Instructivo de uso">

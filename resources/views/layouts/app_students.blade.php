@@ -10,7 +10,7 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -105,26 +105,7 @@
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         {{ $user->name }} <span class="caret"></span>
                                     </a>
-
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        @if($user->is_grade_admin)
-                                        <a class="dropdown-item" href="{{ route('student.admin') }}">
-                                            Alumnos
-                                        </a>
-                                        @endif
-                                        <a class="dropdown-item" href="{{ route('change.password') }}">
-                                            Cambiar Contraseña
-                                        </a>
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            @csrf
-                                        </form>
-                                    </div>
+                                    @user_menu @enduser_menu
                                 </li>
                             @endguest
                         </ul>
@@ -175,6 +156,6 @@
     </script>
 
     @yield("scripts")
-    
+
 </body>
 </html>
