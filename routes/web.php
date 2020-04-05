@@ -69,4 +69,6 @@ Route::group(['middleware' => ['web', 'auth', 'auth.administration.grade']], fun
     Route::get('/administration/grades/{grade}/activity/{activity}', 'GradeAdministration\GradeController@activityEdit')->name('administration.grades.activity.edit');
     Route::post('/administration/grades/{grade}/activity/{activity}', 'GradeAdministration\GradeController@activityUpdate')->name('administration.grades.activity.update');
 
+    Route::delete('/administration/grades/{grade}/activity/{activity}', 'GradeAdministration\GradeController@activityhide')->name('administration.grades.activity.hide');
+
 });

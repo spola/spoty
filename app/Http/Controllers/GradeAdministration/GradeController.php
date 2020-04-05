@@ -63,7 +63,8 @@ class GradeController extends BaseController
         return view('grade_administration.grades.activity_edit', [
             'grade' => $grade,
             'activityArray' => $activityArray,
-            'activity_types' => Activity::$TYPES
+            'activity_types' => Activity::$TYPES,
+            'is_trashed' => $activity->trashed(),
         ]);
     }
 
@@ -85,6 +86,25 @@ class GradeController extends BaseController
 
         return redirect()
             ->route('administration.grades.show', ['grade' => $grade])
+            ->with("message", 'Actividad actualizada');
+    }
+
+    public function activityhide(Grade $grade, Activity $activity, Request $request) {
+
+        $request->validate([
+            'id' => 'required'
+        ]);
+
+        $id = $request->input('id');
+
+        if($activity->trashed()) {
+            $activity->restore();
+        } else {
+            $activity->delete();
+        }
+
+        return redirect()
+            ->route('administration.grades.activity.edit', ['grade' => $grade, 'activity' => $activity])
             ->with("message", 'Actividad actualizada');
     }
 
