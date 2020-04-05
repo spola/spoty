@@ -26,6 +26,7 @@ class GradeController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
+     * @param \App\Grade $grade
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -53,7 +54,38 @@ class GradeController extends BaseController
     }
 
     public function activityEdit(Grade $grade, Activity $activity) {
-        return "hola";
+
+        $activityArray = $activity->toArray();
+        //var_dump($activityArray);
+        $activityArray['published'] = substr($activityArray['published'], 0, 10);
+        $activityArray['due_date'] = substr($activityArray['due_date'], 0, 10);
+
+        return view('grade_administration.grades.activity_edit', [
+            'grade' => $grade,
+            'activityArray' => $activityArray,
+            'activity_types' => Activity::$TYPES
+        ]);
+    }
+
+    public function activityUpdate(Grade $grade, Activity $activity, Request $request) {
+
+        $request->validate([
+            'course' => 'required',
+            'title' => 'required|string',
+            //'description' => 'required',
+            'published' => 'date',
+            'due_date' => 'date',
+            'link' => 'required|url',
+            'type' => 'required',
+        ]);
+
+        $data = $request->all();
+
+        $activity->update($data);
+
+        return redirect()
+            ->route('administration.grades.show', ['grade' => $grade])
+            ->with("message", 'Actividad actualizada');
     }
 
     /**

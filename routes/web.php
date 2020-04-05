@@ -67,5 +67,6 @@ Route::group(['middleware' => ['web', 'auth', 'auth.administration.grade']], fun
     Route::post('/administration/grades/{grade}/activity', 'GradeAdministration\GradeController@store')->name('administration.grades.activity.store');
 
     Route::get('/administration/grades/{grade}/activity/{activity}', 'GradeAdministration\GradeController@activityEdit')->name('administration.grades.activity.edit');
+    Route::post('/administration/grades/{grade}/activity/{activity}', 'GradeAdministration\GradeController@activityUpdate')->name('administration.grades.activity.update');
 
 });
