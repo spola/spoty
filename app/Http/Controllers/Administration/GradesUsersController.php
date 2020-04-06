@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 
 use App\Grade;
 use App\User;
+use \Mail;
+
 
 class GradesUsersController extends Controller
 {
@@ -61,6 +63,8 @@ class GradesUsersController extends Controller
 
         $parent = User::where('email', $data['parent_email'])->first();
 
+        $parentCreated = false;
+
         if($parent == null) {
             $parent = User::create([
                 'name'=> $data['parent_name'],
@@ -70,12 +74,15 @@ class GradesUsersController extends Controller
                 'is_parent' => true,
                 'grade_id' => null
             ]);
+            $parentCreated = true;
         }
 
         $parent->childrens()->attach($student);
 
-        //Mail::to($student)->send(new UserCreated());
-        //Mail::to($parent)->send(new UserCreated());
+        Mail::to($student)->send(new UserCreated());
+        if($parentCreated) {
+            Mail::to($parent)->send(new UserCreated());
+        }
 
         return redirect()
             ->route('administration.grades.users.index', ['grade' => $grade])
