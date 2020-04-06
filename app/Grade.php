@@ -24,4 +24,9 @@ class Grade extends Model
     {
         return $this->hasMany('App\Course')->orderBy('name', "asc");
     }
+
+    public function students()
+    {
+        return $this->hasMany('App\User')->orderBy('name', "asc");
+    }
 }
