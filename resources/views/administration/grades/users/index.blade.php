@@ -17,7 +17,7 @@
                     <th>Nombre</th>
                     <th>Correo</th>
                     <th>Fecha creación</th>
-                    <th></th>
+                    <th>Apoderados</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,6 +26,11 @@
                     <td>{{$student->name}}</td>
                     <td>{{$student->email}}</td>
                     <td>@formatDate($student->created_at)</td>
+                    <td>
+                        @foreach($student->parents as $parent)
+                        {{$parent->name}}<br/><small>{{$parent->email}}</small><br/>
+                        @endforeach
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
