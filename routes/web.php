@@ -56,19 +56,23 @@ Route::group(['middleware' => ['web', 'auth', 'auth.administration']], function 
     Route::post('/administration/users/create', 'Administration\UsersController@store');
 });
 
-Route::group(['middleware' => ['web', 'auth', 'auth.administration.grade']], function () {
+Route::name('administration.')
+    ->middleware(['web', 'auth', 'auth.administration.grade'])
+    ->prefix('administration')
+    ->group(function () {
 
     Route::bind('activity', function ($id) {
         return App\Activity::withTrashed()->find($id);
     });
 
-    Route::get('/administration/grades/{grade}', 'GradeAdministration\GradeController@show')->name('administration.grades.show');
-    Route::get('/administration/grades/{grade}/activity', 'GradeAdministration\GradeController@activity')->name('administration.grades.activity.add');
-    Route::post('/administration/grades/{grade}/activity', 'GradeAdministration\GradeController@store')->name('administration.grades.activity.store');
+    Route::get('/grades/{grade}', 'GradeAdministration\GradeController@show')->name('grades.show');
+    Route::get('/grades/{grade}/activity', 'GradeAdministration\GradeController@activity')->name('grades.activity.add');
+    Route::post('/grades/{grade}/activity', 'GradeAdministration\GradeController@store')->name('grades.activity.store');
 
-    Route::get('/administration/grades/{grade}/activity/{activity}', 'GradeAdministration\GradeController@activityEdit')->name('administration.grades.activity.edit');
-    Route::post('/administration/grades/{grade}/activity/{activity}', 'GradeAdministration\GradeController@activityUpdate')->name('administration.grades.activity.update');
+    Route::get('/grades/{grade}/activity/{activity}', 'GradeAdministration\GradeController@activityEdit')->name('grades.activity.edit');
+    Route::post('/grades/{grade}/activity/{activity}', 'GradeAdministration\GradeController@activityUpdate')->name('grades.activity.update');
 
-    Route::delete('/administration/grades/{grade}/activity/{activity}', 'GradeAdministration\GradeController@activityhide')->name('administration.grades.activity.hide');
+    Route::delete('/grades/{grade}/activity/{activity}', 'GradeAdministration\GradeController@activityhide')->name('grades.activity.hide');
 
+    Route::resource('grades.users', 'Administration\GradesUsersController');
 });
