@@ -8,17 +8,15 @@
             Invitar Padres
         </a>
         @endif
-        @if($user->is_grade_admin)
-        <a class="dropdown-item" href="{{ route('student.admin') }}">
-            <i class="fas fa-sliders-h"></i>
-            Alumnos
-        </a>
-        @endif
         @if(isset($admin_grades) && !empty($admin_grades) )
             @foreach($admin_grades as $grade)
+                <a class="dropdown-item" href="{{ route('administration.grades.users.index', ['grade' => $grade->id]) }}">
+                    <i class="fas fa-sliders-h"></i>
+                    {{ $grade->name }} - Alumnos
+                </a>
                 <a href="{{ route('administration.grades.show', ['grade' => $grade->id]) }}" class="dropdown-item">
                     <i class="fas fa-sliders-h"></i>
-                    {{ $grade->name }}
+                    {{ $grade->name }} - Actividades
                 </a>
             @endforeach
         @endif
