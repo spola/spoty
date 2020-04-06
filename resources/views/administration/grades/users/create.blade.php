@@ -24,6 +24,7 @@
                         {!!Form::fieldsetOpen('Apoderado')!!}
                             {!!Form::text('parent_name', __('Name'))!!}
                             {!!Form::text('parent_email', __('E-Mail Address'))->type('email')!!}
+                            <small>Nota: Si ya existe un apoderado con el mismo correo se usará ese apoderado</small>
                         {!!Form::fieldsetClose()!!}
 
                         <div class="form-group row mb-0">
