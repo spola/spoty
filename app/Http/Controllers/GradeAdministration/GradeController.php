@@ -37,7 +37,7 @@ class GradeController extends BaseController
             'title' => 'required|string',
             //'description' => 'required',
             'published' => 'date',
-            'due_date' => 'date',
+            'due_date' => 'date|nullable',
             'link' => 'required|url',
             'type' => 'required',
         ]);
