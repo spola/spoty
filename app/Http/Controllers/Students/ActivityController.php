@@ -21,9 +21,7 @@ class ActivityController extends Controller
             $user = Auth::user();
             $activity = $request->route('activity');
 
-            $cant = $user->grade->courses()->where('id', $activity->course_id)->count();
-
-            if($cant == 0) {
+            if(!$this->repository->forTheUser($activity, $user)) {
                 return abort(403, "Activity not for the user");
             }
 
@@ -53,9 +51,8 @@ class ActivityController extends Controller
 
     public function didit(Activity $activity) {
         $user = Auth::user();
+        $this->repository->register($activity, $user);
 
-
-
-        //return back();
+        return back();
     }
 }

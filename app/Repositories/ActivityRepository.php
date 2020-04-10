@@ -10,6 +10,14 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ActivityRepository implements IActivityRepository
 {
+
+    public function forTheUser(Activity $activity, User $user): bool {
+        $cant = $user->grade->courses()->where('id', $activity->course_id)->count();
+
+        return $cant != 0;
+    }
+
+
     public function register(Activity $activity, User $user) : UserActivity {
 
         $userActivities = UserActivity::query()
