@@ -49,7 +49,7 @@ class HomeController extends Controller
 
 
 
-
+        $dones = null;
         if($today != null) {
             $query = "SELECT
             (select count(1) from users where grade_id = ? and is_student = 1) as total,
