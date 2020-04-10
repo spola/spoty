@@ -16,6 +16,11 @@ class AppServiceProvider extends ServiceProvider
     {
         //Retro compatibility
         Schema::defaultStringLength(191);
+
+        $this->app->bind(
+            'App\Repositories\IActivityRepository',
+            'App\Repositories\ActivityRepository'
+        );
     }
 
     /**
