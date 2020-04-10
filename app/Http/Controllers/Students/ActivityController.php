@@ -16,6 +16,19 @@ class ActivityController extends Controller
 
     public function __construct(IActivityRepository $repository) {
         $this->repository = $repository;
+
+        $this->middleware(function ($request, $next) {
+            $user = Auth::user();
+            $activity = $request->route('activity');
+
+            $cant = $user->grade->courses()->where('id', $activity->course_id)->count();
+
+            if($cant == 0) {
+                return abort(403, "Activity not for the user");
+            }
+
+            return $next($request);
+        });
     }
 
     public function register(Activity $activity)
@@ -36,5 +49,13 @@ class ActivityController extends Controller
 
         return response()
             ->json(['res'=>true]);
+    }
+
+    public function didit(Activity $activity) {
+        $user = Auth::user();
+
+
+
+        //return back();
     }
 }
