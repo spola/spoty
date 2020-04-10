@@ -21,6 +21,10 @@ class AppServiceProvider extends ServiceProvider
             'App\Repositories\IActivityRepository',
             'App\Repositories\ActivityRepository'
         );
+        $this->app->bind(
+            'App\Services\IStudentService',
+            'App\Services\StudentService'
+        );
     }
 
     /**

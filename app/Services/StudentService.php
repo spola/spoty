@@ -1,0 +1,48 @@
+<?php
+
+namespace App\Services;
+use Illuminate\Database\Eloquent\Collection;
+
+use App\Activity;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+
+class StudentService implements IStudentService
+{
+    public function land($user) {
+        Carbon::setWeekStartsAt(Carbon::MONDAY);
+
+        $activities = Activity::query()
+            ->with('Course')
+            ->whereBetween('due_date', [Carbon::now()->startOfWeek(),Carbon::now()->endOfWeek()])
+            ->orderBy('due_date', 'asc')
+            ->get();
+
+        $today = $activities->filter(function ($item) {
+            return $item->due_date->isToday();
+        })->first();
+
+
+
+        $dones = null;
+        if($today != null) {
+            $query = "SELECT
+            (select count(1) from users where grade_id = ? and is_student = 1) as total,
+            (select count(1) from user_activities where activity_id = ? and deleted_at is null) as hechas,
+            (select count(1) from user_activities where activity_id = ? and deleted_at is null and user_id = ?) > 0 as hecha_por_mi";
+
+            $dones = DB::select($query, [$today->course->grade_id, $today->id, $today->id, $user->id]);
+            $dones = $dones[0];
+
+            $activities = $activities->filter( function ($item) use($today) {
+                return $item->id != $today->id;
+            });
+
+            if($dones->hecha_por_mi) {
+                $today = null;
+            }
+        }
+
+        return compact('activities', 'today', 'dones');
+    }
+}

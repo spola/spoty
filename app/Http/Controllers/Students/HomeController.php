@@ -4,21 +4,22 @@ namespace App\Http\Controllers\Students;
 
 use Illuminate\Http\Request;
 use \Auth;
-use App\Activity;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
+use App\Services\IStudentService;
 
 
 class HomeController extends Controller
 {
+    private $service;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(IStudentService $service)
     {
         $this->middleware('auth');
+        $this->service = $service;
     }
 
     /**
@@ -36,38 +37,8 @@ class HomeController extends Controller
 
     public function land() {
         $user = Auth::user();
-        Carbon::setWeekStartsAt(Carbon::MONDAY);
 
-        $activities = Activity::query()
-            ->with('Course')
-            ->whereBetween('due_date', [Carbon::now()->startOfWeek(),Carbon::now()->endOfWeek()])
-            ->orderBy('due_date', 'asc')
-            ->get();
-
-        $today = $activities->filter(function ($item) {
-            return $item->due_date->isToday();
-        })->first();
-
-
-
-        $dones = null;
-        if($today != null) {
-            $query = "SELECT
-            (select count(1) from users where grade_id = ? and is_student = 1) as total,
-            (select count(1) from user_activities where activity_id = ? and deleted_at is null) as hechas,
-            (select count(1) from user_activities where activity_id = ? and deleted_at is null and user_id = ?) > 0 as hecha_por_mi";
-
-            $dones = DB::select($query, [$today->course->grade_id, $today->id, $today->id, $user->id]);
-            $dones = $dones[0];
-
-            $activities = $activities->filter( function ($item) use($today) {
-                return $item->id != $today->id;
-            });
-
-            if($dones->hecha_por_mi) {
-                $today = null;
-            }
-        }
+        extract( $this->service->land($user));
 
         return view('students.home.land', compact('activities', 'today', 'dones'));
     }
