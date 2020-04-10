@@ -33,7 +33,7 @@
     <div class="col-12 col-xl-5">
         <h3>Lo que vendrá <small>(semana)</small></h3>
         <div class="card flex-row flex-wrap">
-            @if(empty($activities))
+            @if($activities->isEmpty())
                 <div class="card-header border-0">
                     <img src="{{URL::asset('/images/todo_listo.jpg')}}" alt="" style="width:200px" class="img-fluid">
                 </div>
@@ -49,25 +49,12 @@
     </div>
 </div>
 
-{{--
-<div class="card-deck">
-    <div class="card ">
-        <div class="card-header">
-        </div>
-        <div class="card-body ">
-        </div>
-        <div class="card-footer ml-auto mr-auto">
-        </div>
-    </div>
-</div>
 
-<pre>
-@json($activities)
-</pre>
-
---}}
-
-
+@endsection
+@section("scripts")
+<script>
+console.info(@json($activities));
+</script>
 @endsection
 @section('styles')
 <style>
