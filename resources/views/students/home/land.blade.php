@@ -6,7 +6,7 @@
         <h3>Actividad para hoy</h3>
         <div class="card flex-row flex-wrap activity">
             @if($today == null)
-            <div class="card-header border-0">
+            <div class="flex-fill border-0 text-center">
                 <img src="{{URL::asset('/images/hoy_listo.jpg')}}" alt="" style="width:200px" class="img-fluid">
                 <br/>
                 <p>Todo listo</p>
@@ -34,7 +34,7 @@
         <h3>Lo que vendrá <small>(semana)</small></h3>
         <div class="card flex-row flex-wrap">
             @if($activities->isEmpty())
-                <div class="card-header border-0">
+                <div class="flex-fill border-0 text-center">
                     <img src="{{URL::asset('/images/todo_listo.jpg')}}" alt="" style="width:200px" class="img-fluid">
                 </div>
             @else
