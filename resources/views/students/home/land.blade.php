@@ -24,7 +24,7 @@
                 <a href="{{$today->link}}" target="_blank" class="btn btn-primary spoty-d-sm-hide">Ir a la actividad</a>
 
                 <div class="w-100 text-muted text-right">
-                    ¿La hiciste? <a href="{{$today->link}}" target="_blank" class="btn btn-success">¡Sí!</a>
+                    ¿La hiciste? <a href="{{route('student.activity.didit', $today)}}" class="btn btn-success">¡Sí!</a>
                 </div>
             </div>
             @endif

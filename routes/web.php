@@ -38,6 +38,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
     Route::put('/activities/register/{activity}', 'Students\ActivityController@register');
     Route::delete('/activities/unregister/{activity}', 'Students\ActivityController@unregister');
+    Route::get('/activities/didit/{activity}', 'Students\ActivityController@didit')->name('student.activity.didit');
 
     Route::get('/students/admin', 'Students\AdminController@index')->name('student.admin');
     Route::get('/students/admin/invite', 'Students\AdminController@invite')->name('student.admin.create');
