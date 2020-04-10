@@ -12,6 +12,11 @@ use Auth;
 
 class ActivityController extends Controller
 {
+    /**
+     * Repository
+     *
+     * @var IActivityRepository
+     */
     private $repository;
 
     public function __construct(IActivityRepository $repository) {
