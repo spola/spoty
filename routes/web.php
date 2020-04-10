@@ -12,6 +12,8 @@
 */
 
 Auth::routes(['register' => false]);
+//Route::get('login/google', 'Auth\LoginController@redirectToProvider');
+//Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');
 
 
 Route::group(['middleware' => ['web', 'auth']], function () {
@@ -26,6 +28,8 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     });
 
     Route::get('/student', 'Students\HomeController@index')->name('student.home');
+    Route::get('/student/land', 'Students\HomeController@land')->name('student.land');
+
 
     Route::get('/courses/{course}', 'Students\CourseController@show')->name('courses.show');
 
