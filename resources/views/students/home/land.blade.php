@@ -31,8 +31,8 @@
         </div>
     </div>
     <div class="col-12 col-xl-5">
+        <h3>Lo que vendrá <small>(semana)</small></h3>
         <div class="card flex-row flex-wrap">
-            <h3>Lo que vendrá <small>(semana)</small></h3>
             @if(empty($activities))
                 <div class="card-header border-0">
                     <img src="{{URL::asset('/images/todo_listo.jpg')}}" alt="" style="width:200px" class="img-fluid">
@@ -78,6 +78,7 @@
     text-decoration: none;
 }
 
+
 @media (max-width: 768px) {
 
     .card-header {
@@ -93,6 +94,10 @@
 @media (min-width: 768px) {
     .spoty-d-md-hide {
         display: none !important;
+    }
+
+    .card.activity .card-block{
+        width: calc(100% - 190px);
     }
 }
 </style>
