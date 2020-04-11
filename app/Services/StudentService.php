@@ -4,6 +4,7 @@ namespace App\Services;
 use Illuminate\Database\Eloquent\Collection;
 
 use App\Activity;
+use App\News;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -43,6 +44,12 @@ class StudentService implements IStudentService
             }
         }
 
-        return compact('activities', 'today', 'dones');
+        $news = News::where('grade_id', $user->grade_id)
+            ->orderBy('published', 'desc')
+            ->take(3)
+            ->get();
+
+
+        return compact('activities', 'today', 'dones', 'news');
     }
 }

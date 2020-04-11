@@ -40,6 +40,6 @@ class HomeController extends Controller
 
         extract( $this->service->land($user));
 
-        return view('students.home.land', compact('activities', 'today', 'dones'));
+        return view('students.home.land', compact('activities', 'today', 'dones', 'news'));
     }
 }

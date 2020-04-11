@@ -49,6 +49,39 @@
     </div>
 </div>
 
+@if(!$news->isEmpty())
+<div class="row justify-content-center mt-5">
+    <div class="col-12 col-xl-5">
+        <h1>Noticias</h1>
+    </div>
+</div>
+
+<div class="row justify-content-center mt-1">
+    <div class="col-12 col-xl-5">
+
+    @foreach($news as $item)
+    <div class="card mb-3 news">
+        <div class="card-header">
+            <i class="far fa-newspaper"></i>
+            {{$item->title}}
+        </div>
+        <div class="card-body">
+            @if($item->title_on_top)<h5 class="card-title">{{$item->title}}</h5>@endif
+            <div class="{{$item->fixed_size?'news-content':''}}">
+                {!!$item->content!!}
+            </div>
+            @if(!$item->title_on_top)<h5 class="card-title">{{$item->title}}</h5>@endif
+            <p class="card-text">{{$item->description}}</p>
+            <p class="card-text"><small class="text-muted">{{$item->published->format('Y-m-d')}}</small></p>
+        </div>
+    </div>
+    @endforeach
+
+
+    </div>
+</div>
+@endif
+
 
 @endsection
 @section("scripts")
@@ -87,5 +120,26 @@ console.info(@json($activities));
         width: calc(100% - 190px);
     }
 }
+
+.card.news iframe {
+    display:block;
+    width:100%;
+    height: 100%;
+}
+.news .news-content {
+    height: 400px;
+}
+
+@media (max-width: 768px) {
+    .news .news-content {
+        height: 200px;
+    }
+
+    .card-header {
+        align-content: start;
+        text-align: left;
+    }
+}
+
 </style>
 @endsection
