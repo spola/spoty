@@ -45,8 +45,9 @@ class StudentService implements IStudentService
         }
 
         $news = News::where('grade_id', $user->grade_id)
+            ->where('published', '<=', Carbon::now())
             ->orderBy('published', 'desc')
-            ->take(3)
+            ->take(5)
             ->get();
 
 

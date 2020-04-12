@@ -60,21 +60,7 @@
     <div class="col-12 col-xl-5">
 
     @foreach($news as $item)
-    <div class="card mb-3 news">
-        <div class="card-header">
-            <i class="far fa-newspaper"></i>
-            {{$item->title}}
-        </div>
-        <div class="card-body">
-            @if($item->title_on_top)<h5 class="card-title">{{$item->title}}</h5>@endif
-            <div class="{{$item->fixed_size?'news-content':''}}">
-                {!!$item->content!!}
-            </div>
-            @if(!$item->title_on_top)<h5 class="card-title">{{$item->title}}</h5>@endif
-            <p class="card-text">{{$item->description}}</p>
-            <p class="card-text"><small class="text-muted">{{$item->published->format('Y-m-d')}}</small></p>
-        </div>
-    </div>
+        @component('components.news.' . $item->type, ['item'=>$item] ) @endcomponent
     @endforeach
 
 
@@ -128,6 +114,16 @@ console.info(@json($activities));
 }
 .news .news-content {
     height: 400px;
+}
+
+.bg-pink {
+    background-color: #f783ac;
+}
+.bg-water-green {
+    background-color: #BEE8DC;
+}
+.bg-news {
+    background-color: #9dbdff;
 }
 
 @media (max-width: 768px) {

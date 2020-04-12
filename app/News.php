@@ -10,8 +10,14 @@ class News extends Model
 {
     use SoftDeletes;
 
+    public static $TYPES = [
+        'news' => 'Noticias',
+        'birthday' => 'Cumpleaños',
+        'activity' => 'Actividad',
+    ];
+
     protected $fillable = [
-        'title', 'description', 'published', 'content', 'grade_id', 'title_on_top', 'fixed_sized'
+        'title', 'description', 'published', 'content', 'grade_id', 'title_on_top', 'fixed_sized', 'type', 'entity', 'entity_id'
     ];
 
     /**
