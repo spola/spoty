@@ -20,7 +20,7 @@ class AddBirthdateToUsersTable extends Migration
             $table->enum('type', array('news','birthday','activity'))->default('news');
 
             $table->string('entity')->nullable();
-            $table->bigIncrements('entity_id')->nullable();
+            $table->bigInteger('entity_id')->nullable();
 
         });
     }
