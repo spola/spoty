@@ -22,7 +22,7 @@
             @endif
         </div>
     </div>
-    
+
     <div class="row">
         <div class="col">
         {!! $course->content !!}
@@ -75,12 +75,12 @@
                     <div class="widget-content-left mr-2">
                         <!-- <div class="custom-checkbox custom-control"> <input class="custom-control-input" id="exampleCustomCheckbox12" type="checkbox"><label class="custom-control-label" for="exampleCustomCheckbox12">&nbsp;</label> </div> -->
                         <button class="border-0 btn-transition btn btn-outline-success change-icon register_activity {{$checked->contains($activity->id)?'d-none':''}}" data-id="{{$activity->id}}" data-checked="true">
-                            <i class="far fa-square fa-2x" title="Vuelve a dejar tu trabajo como pendiente" data-toggle="tooltip" data-placement="top"></i>    
+                            <i class="far fa-square fa-2x" title="Vuelve a dejar tu trabajo como pendiente" data-toggle="tooltip" data-placement="top"></i>
                             <i class="fa fa-check fa-2x" title="Marca tu trabajo como entregado" data-toggle="tooltip" data-placement="top"></i>
                         </button>
                         <button class="border-0 btn-transition btn btn-outline-success change-icon register_activity {{!$checked->contains($activity->id)?'d-none':''}}" data-id="{{$activity->id}}" data-checked="false">
                             <i class="fa fa-check fa-2x" title="Marca tu trabajo como entregado" data-toggle="tooltip" data-placement="top"></i>
-                            <i class="far fa-square fa-2x" title="Vuelve a dejar tu trabajo como pendiente" data-toggle="tooltip" data-placement="top"></i>    
+                            <i class="far fa-square fa-2x" title="Vuelve a dejar tu trabajo como pendiente" data-toggle="tooltip" data-placement="top"></i>
                         </button>
                     </div>
                     <div class="widget-content-left">
@@ -110,8 +110,14 @@
 @endsection
 
 @section("scripts")
+<script>
+    window.Page = {
+        register: "{{route('student.activity.store', [null])}}",
+        unregister: "{{route('student.activity.destroy', [null])}}"
+    };
+</script>
 <script src="{{asset('js/course.js')}}"></script>
 @endsection
 
-        
+
 

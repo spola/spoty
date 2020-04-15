@@ -16,6 +16,7 @@ Auth::routes(['register' => false]);
 //Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');
 
 
+//General routes
 Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/', function () {
         if(\Auth::user()->is_student) {
@@ -27,36 +28,40 @@ Route::group(['middleware' => ['web', 'auth']], function () {
         }
     });
 
-    Route::get('/student', 'Students\HomeController@index')->name('student.home');
-    Route::get('/student/land', 'Students\HomeController@land')->name('student.land');
-
-
-    Route::get('/courses/{course}', 'Students\CourseController@show')->name('courses.show');
-
     Route::get('/change-password',  'Auth\ChangePasswordController@index')->name('change.password');
     Route::post('/change-password', 'Auth\ChangePasswordController@store')->name('change.password.store');
-
-    Route::put('/activities/register/{activity}', 'Students\ActivityController@register');
-    Route::delete('/activities/unregister/{activity}', 'Students\ActivityController@unregister');
-    Route::get('/activities/didit/{activity}', 'Students\ActivityController@didit')->name('student.activity.didit');
 
     Route::get('/students/admin', 'Students\AdminController@index')->name('student.admin');
     Route::get('/students/admin/invite', 'Students\AdminController@invite')->name('student.admin.create');
     Route::post('/students/admin/invite', 'Students\AdminController@store')->name('student.admin.store');
 
+    Route::get('/courses/{course}', 'Students\CourseController@show')->name('courses.show');
 });
 
+//Student routes
+Route::name('student.')
+    ->middleware(['web', 'auth'])
+    ->namespace("Students")
+    ->prefix('student')
+    ->group(function () {
+
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/land', 'HomeController@land')->name('land');
+
+    Route::put('/activities/register/{activity}', 'ActivityController@register')->name('activity.store');;
+    Route::delete('/activities/unregister/{activity}', 'ActivityController@unregister')->name('activity.destroy');;
+    Route::get('/activities/didit/{activity}', 'ActivityController@didit')->name('activity.didit');
+
+});
+
+//Parent routes
 Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/parent', 'Parents\HomeController@index')->name('parents.home');
     Route::get('/parent/calendars', 'Parents\HomeController@calendars')->name('parents.calendars');
     Route::get('/parent/grade/{grade}', 'Parents\GradeController@show')->name('parents.grade.show');
-
-
-
 });
 
 Route::group(['middleware' => ['web', 'auth', 'auth.administration']], function () {
-
     Route::get('/administration/users/create', 'Administration\UsersController@create')->name('administration.users.create');
     Route::post('/administration/users/create', 'Administration\UsersController@store');
 });

@@ -4,7 +4,7 @@ $(function() {
         e.preventDefault();
 
         var $this = $(this);
-        
+
         //Si está chequeado el botón que se ve es el de deschequear, entonces se tiene que usar el check al revés
         var activityId = $this.data("id"),
             checked = $this.data("checked"),
@@ -13,17 +13,17 @@ $(function() {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 method: checked? "PUT":"DELETE",
-                url: "/activities/" + (checked?'register':'unregister') +  "/" + activityId
+                url: (checked? Page.register:Page.unregister) +  "/" + activityId
             };
 
-        
+
 
         $.ajax(params)
         .done(function( msg ) {
             $this.parent().find("button").toggleClass("d-none");
         });
-            
 
-        
+
+
     });
 });
