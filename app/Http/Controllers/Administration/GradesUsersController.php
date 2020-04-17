@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Administration;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Mail\UserCreated;
+
 use App\Grade;
 use App\User;
 use \Mail;
