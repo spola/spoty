@@ -31,7 +31,7 @@ class HomeControllerTest extends TestCase
             ->assertRedirect('login');
 
         $response = $this
-            ->get(route('student.land'))
+            ->get(route('student.calendar'))
             ->assertRedirect('login');
     }
 
@@ -49,7 +49,7 @@ class HomeControllerTest extends TestCase
 
         $this
             ->actingAs($user)
-            ->get(route('student.land'))
+            ->get(route('student.calendar'))
             ->assertStatus(200);
     }
 

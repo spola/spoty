@@ -44,6 +44,16 @@
                 </h3>
             </div>
 
+            <ul class="list-unstyled components">
+                <li class="icons">
+                    <a href="{{route('student.calendar')}}">
+                        <i class="far fa-calendar-alt"></i>
+                        <br/>
+                        Calendarios
+                    </a>
+                </li>
+            </ul>
+
             @if(isset($courses))
             <ul class="list-unstyled components">
                 @foreach($courses as $course)

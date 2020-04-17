@@ -45,8 +45,8 @@ Route::name('student.')
     ->prefix('student')
     ->group(function () {
 
-    Route::get('/', 'HomeController@index')->name('home');
-    Route::get('/land', 'HomeController@land')->name('land');
+    Route::get('/', 'HomeController@index')->name('calendar');
+    Route::get('/land', 'HomeController@land')->name('home');
 
     Route::put('/activities/register/{activity}', 'ActivityController@register')->name('activity.store');;
     Route::delete('/activities/unregister/{activity}', 'ActivityController@unregister')->name('activity.destroy');;
@@ -55,10 +55,15 @@ Route::name('student.')
 });
 
 //Parent routes
-Route::group(['middleware' => ['web', 'auth']], function () {
-    Route::get('/parent', 'Parents\HomeController@index')->name('parents.home');
-    Route::get('/parent/calendars', 'Parents\HomeController@calendars')->name('parents.calendars');
-    Route::get('/parent/grade/{grade}', 'Parents\GradeController@show')->name('parents.grade.show');
+Route::name('parents.')
+    ->middleware(['web', 'auth'])
+    ->namespace("Parents")
+    ->prefix('parent')
+    ->group(function () {
+
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/calendars', 'HomeController@calendars')->name('calendars');
+    Route::get('/grade/{grade}', 'GradeController@show')->name('grade.show');
 });
 
 Route::group(['middleware' => ['web', 'auth', 'auth.administration']], function () {
