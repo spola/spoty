@@ -55,7 +55,7 @@
                     </a>
                 </li>
                 <li class="icons">
-                    <a href="{{route('parents.calendars')}}">
+                    <a href="{{route('parent.calendars')}}">
                         <i class="far fa-calendar-alt"></i>
                         <br/>
                         Calendarios

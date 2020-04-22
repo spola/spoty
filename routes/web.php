@@ -22,7 +22,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
         if(\Auth::user()->is_student) {
             return redirect()->route("student.home");
         } else if(\Auth::user()->is_parent) {
-            return redirect()->route("parents.home");
+            return redirect()->route("parent.home");
         } else {
             return redirect("home");
         }
@@ -55,7 +55,7 @@ Route::name('student.')
 });
 
 //Parent routes
-Route::name('parents.')
+Route::name('parent.')
     ->middleware(['web', 'auth'])
     ->namespace("Parents")
     ->prefix('parent')

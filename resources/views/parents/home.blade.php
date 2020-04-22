@@ -69,11 +69,11 @@
     </style>
 
 <div class="container">
-    
+
         @foreach($respuestas as $respuesta)
             <?php $student = $respuesta['student']; $totales = $respuesta['totales'] ?>
             <div class="row">
-                <h1>{{$student->name}} <small><a href="{{route('parents.grade.show', ['grade'=>$student->grade_id])}}">(detalle)</a></small> </h1>
+                <h1>{{$student->name}} <small><a href="{{route('parent.grade.show', ['grade'=>$student->grade_id])}}">(detalle)</a></small> </h1>
             </div>
             <div class="row">
             @foreach($totales as $course)
@@ -97,11 +97,11 @@
             @endforeach
             </div>
         @endforeach
-    
+
 </div>
 
 @endsection
-<?php 
+<?php
 /*
 dd([
     'totales' => $totales,

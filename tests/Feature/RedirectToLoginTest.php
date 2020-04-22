@@ -55,6 +55,6 @@ class RedirectToLoginTest extends TestCase
             $response = $this
                 ->actingAs($user)
                 ->get('/')
-                ->assertRedirect(route('parents.home'));
+                ->assertRedirect(route('parent.home'));
     }
 }
