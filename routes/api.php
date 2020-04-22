@@ -27,3 +27,7 @@ Route::group([ 'prefix' => 'auth'], function (){
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware('auth:api')->namespace("API")->group(function () {
+    Route::get('course/activities/{course}', 'CourseController@activities');
+});

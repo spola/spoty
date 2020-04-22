@@ -78,3 +78,8 @@ https://github.com/netojose/laravel-bootstrap-4-forms
 
 ## Generador de eventos 
 https://decomaan.github.io/google-calendar-link-generator/
+
+
+https://medium.com/@bapunawarsaddam/rest-api-with-laravel-5-8-using-laravel-passport-53b5953798bb
+
+https://laraveldaily.com/laravel-api-404-response-return-json-instead-of-webpage-error/
