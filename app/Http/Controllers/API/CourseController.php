@@ -17,15 +17,16 @@ class CourseController extends ResponseController
     public function activities(Request $request, Course $course) {
         $id = $request->user()->id;
 
-        $ids = $course->activities->pluck('id')->all();
+        $ids = $course->activities->pluck('id');
         $checked = UserActivity::select('activity_id')
                         ->whereIn('activity_id', $ids)
                         ->where('user_id', $id)
-                        ->pluck('activity_id');
+                        ->pluck('activity_id')
+                        ->all();
 
-        $activities = $course->activities->map(function($activity) use(&$ids) {
+        $activities = $course->activities->map(function($activity) use(&$checked) {
             $activity->setHidden(['created_at', 'updated_at', 'deleted_at']);
-            $activity->checked = in_array($activity->id, $ids);
+            $activity->checked = in_array($activity->id, $checked);
             return $activity;
         });
 
