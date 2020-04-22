@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -50,8 +51,13 @@ class Handler extends ExceptionHandler
         if ($exception instanceof \Illuminate\Session\TokenMismatchException) {
             return redirect()->route('login');
         }
-        if ($exception instanceof ModelNotFoundException && $request->wantsJson()) {
-            return response()->json(['message' => 'Not Found!'], 404);
+        if($request->wantsJson()) {
+            if ($exception instanceof ModelNotFoundException ) {
+                return response()->json(['message' => 'Not Found!'], 404);
+            }
+            if($exception instanceof HttpException && $exception->getStatusCode() == 403){
+                return response()->json(['message' => $exception->getMessage()], 403);
+            }
         }
         return parent::render($request, $exception);
     }
