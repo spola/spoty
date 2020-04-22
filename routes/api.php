@@ -28,6 +28,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:api')->namespace("API")->group(function () {
-    Route::get('course/activities/{course}', 'CourseController@activities');
+Route::middleware(['auth:api', 'user:student'])->namespace("API")->group(function () {
+    Route::get('course/{course}/activities', 'CourseActivityController@index');
+    Route::put('course/{course}/activity/{activity}', 'CourseActivityController@update');
 });
