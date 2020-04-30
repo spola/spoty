@@ -55,16 +55,21 @@ class GradesUsersController extends Controller
 
         $data = $request->all();
 
-        $student = User::create([
-            'name'=> $data['name'],
-            'email' => $data['email'],
-            'password'=>bcrypt('12345678'),
-            'is_student'=>true,
-            'grade_id' => $grade->id
-        ]);
+        $student = User::where('email', $data['email'])->first();
+        $studentCreated = false;
+
+        if($student == null) {
+            $student = User::create([
+                'name'=> $data['name'],
+                'email' => $data['email'],
+                'password'=>bcrypt('12345678'),
+                'is_student'=>true,
+                'grade_id' => $grade->id
+            ]);
+            $studentCreated = true;
+        }
 
         $parent = User::where('email', $data['parent_email'])->first();
-
         $parentCreated = false;
 
         if($parent == null) {
@@ -81,7 +86,9 @@ class GradesUsersController extends Controller
 
         $parent->childrens()->attach($student);
 
-        Mail::to($student)->send(new UserCreated());
+        if($studentCreated) {
+            Mail::to($student)->send(new UserCreated());
+        }
         if($parentCreated) {
             Mail::to($parent)->send(new UserCreated());
         }
