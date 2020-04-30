@@ -8,7 +8,7 @@
                 {{$course->name}}
             </h1>
         </div>
-        <div class="col-md-3 col-sm-12">
+        <div class="col-md-4 col-sm-12">
             @if(isset($course->teacher_name))
             <i class="fas fa-chalkboard-teacher"></i> {{$course->teacher_name}}
             <br/>
