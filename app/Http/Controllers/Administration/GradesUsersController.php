@@ -48,7 +48,7 @@ class GradesUsersController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255'],
             'parent_name' => ['required', 'string', 'max:255'],
             'parent_email' => ['required', 'string', 'email', 'max:255'],
         ]);
