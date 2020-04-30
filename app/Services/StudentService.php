@@ -13,9 +13,12 @@ class StudentService implements IStudentService
     public function land($user) {
         Carbon::setWeekStartsAt(Carbon::MONDAY);
 
+        $coursesIds = $user->grade->courses->pluck('id')->all();
+
         $activities = Activity::query()
             ->with('Course')
             ->whereBetween('due_date', [Carbon::now()->startOfWeek(),Carbon::now()->endOfWeek()])
+            ->whereIn('course_id', $coursesIds)
             ->orderBy('due_date', 'asc')
             ->get();
 
