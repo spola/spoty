@@ -11,12 +11,18 @@ use Illuminate\Support\Facades\DB;
 class StudentService implements IStudentService
 {
 
-    private function findNextActivity($activities) {
-        $today = $activities->filter(function ($item) {
-            return $item->due_date->isToday();
-        });
+    private function pendingActivities($user) {
+        $coursesIds = $user->grade->courses->pluck('id')->all();
 
-        $ids = $today->pluck('id')->all();
+        $ids = Activity::query()
+            ->select('id')
+            ->whereBetween('due_date', [Carbon::now()->startOfWeek(),Carbon::now()->endOfWeek()])
+            ->whereIn('course_id', $coursesIds)
+            ->orderBy('course_id', 'asc')
+            ->orderBy('due_date', 'asc')
+            ->pluck('id')
+            ->all();
+
         $ids_str = implode(",", $ids);
 
         $query = "SELECT * from activities a where a. id not in (
@@ -26,16 +32,16 @@ class StudentService implements IStudentService
                     and deleted_at is null
                 )
                 AND id in ($ids_str)
-                order by course_id asc, due_date asc
-                limit 1";
+                order by course_id asc, due_date asc";
 
         $dones = DB::select($query, [$ids_str, $ids_str] );
 
-        if(count($dones) > 0) {
-            return new Activity((array)$dones[0]);
-        } else {
-            return null;
-        }
+        return array_map(function ($item) {
+            $activity = new Activity( (array)$item );
+            $activity->id = $item->id;
+
+            return  $activity;
+        }, $dones);
     }
 
     private function findStatusActivity($today, $user) {
@@ -53,23 +59,19 @@ class StudentService implements IStudentService
     public function land($user) {
         Carbon::setWeekStartsAt(Carbon::MONDAY);
 
-        $coursesIds = $user->grade->courses->pluck('id')->all();
-
-        $activities = Activity::query()
-            ->with('Course')
-            ->whereBetween('due_date', [Carbon::now()->startOfWeek(),Carbon::now()->endOfWeek()])
-            ->whereIn('course_id', $coursesIds)
-            ->orderBy('course_id', 'asc')
-            ->orderBy('due_date', 'asc')
-            ->get();
-
         $dones = null;
-        $today = $this->findNextActivity($activities);
+        $today = null;
+        $activities = $this->pendingActivities($user);
 
-        if($today != null) {
+        $todayPending = array_filter($activities, function ($item) {
+            return $item->due_date->isToday();
+        });
+
+        if(!empty($todayPending)) {
+            $today = $todayPending[0];
             $dones = $this->findStatusActivity($today, $user);
 
-            $activities = $activities->filter( function ($item) use($today) {
+            $activities = array_filter($activities, function ($item) use($today) {
                 return $item->id != $today->id;
             });
         }

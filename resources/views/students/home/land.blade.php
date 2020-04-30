@@ -33,7 +33,7 @@
     <div class="col-12 col-xl-5">
         <h3>Lo que vendrá <small>(semana)</small></h3>
         <div class="card flex-row flex-wrap">
-            @if($activities->isEmpty())
+            @if(empty($activities))
                 <div class="flex-fill border-0 text-center">
                     <img src="{{URL::asset('/images/todo_listo.jpg')}}" alt="" style="width:200px" class="img-fluid">
                 </div>
