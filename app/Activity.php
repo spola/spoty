@@ -36,6 +36,10 @@ class Activity extends Model
         'scored' => 'boolean',
     ];
 
+    protected $attributes = [
+        'new_tab' => true,
+    ];
+
 
     public function course()
     {
