@@ -59,6 +59,7 @@ class StudentService implements IStudentService
             ->with('Course')
             ->whereBetween('due_date', [Carbon::now()->startOfWeek(),Carbon::now()->endOfWeek()])
             ->whereIn('course_id', $coursesIds)
+            ->orderBy('course_id', 'asc')
             ->orderBy('due_date', 'asc')
             ->get();
 
