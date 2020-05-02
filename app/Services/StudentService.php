@@ -25,6 +25,10 @@ class StudentService implements IStudentService
 
         $ids_str = implode(",", $ids);
 
+        if(empty($ids)) {
+            return [];
+        }
+
         $query = "SELECT * from activities a where a. id not in (
                     select user_activities.activity_id
                     from user_activities
