@@ -36,4 +36,21 @@ interface IActivityRepository
      * @return void
      */
     public function unregister(Activity $activity, User $user) : void;
+
+    /**
+     * Calculate the status of an activity relative to the complete grade.
+     *
+     * @param Activity $today
+     * @param User $user
+     * @return array
+     */
+    public function calcGradeStatusOf(Activity $today, User $user): object;
+
+    /**
+     * Find the current week's pending activities for an user.
+     *
+     * @param User $user
+     * @return array of Activity
+     */
+    public function pendingActivities(User $user): array;
 }

@@ -5,6 +5,10 @@ namespace App\Repositories;
 use App\Activity;
 use App\UserActivity;
 use App\User;
+
+use Carbon\Carbon;
+
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 
@@ -39,5 +43,55 @@ class ActivityRepository implements IActivityRepository
             ->where('activity_id', $activity->id)
             ->where('user_id', $user->id)
             ->delete();
+    }
+
+    public function calcGradeStatusOf(Activity $today, User $user): object {
+        $query = "SELECT
+                (select count(1) from users where grade_id = ? and is_student = 1) as total,
+                (select count(1) from user_activities where activity_id = ? and deleted_at is null) as hechas,
+                (select count(1) from user_activities where activity_id = ? and deleted_at is null and user_id = ?) > 0 as hecha_por_mi";
+
+        $dones = DB::select($query, [$today->course->grade_id, $today->id, $today->id, $user->id]);
+        $dones = $dones[0];
+
+        return $dones;
+    }
+
+    public function pendingActivities(User $user) :array {
+        $coursesIds = $user->grade->courses->pluck('id')->all();
+
+        $ids = Activity::query()
+            ->select('id')
+            ->whereBetween('due_date', [Carbon::now()->startOfWeek(),Carbon::now()->endOfWeek()])
+            ->whereIn('course_id', $coursesIds)
+            ->orderBy('course_id', 'asc')
+            ->orderBy('due_date', 'asc')
+            ->pluck('id')
+            ->all();
+
+        $ids_str = implode(",", $ids);
+
+        if(empty($ids)) {
+            return [];
+        }
+
+        $query = "SELECT * from activities a where a. id not in (
+                    select user_activities.activity_id
+                    from user_activities
+                    where activity_id in ($ids_str)
+                    and user_id = ?
+                    and deleted_at is null
+                )
+                AND id in ($ids_str)
+                order by course_id asc, due_date asc";
+
+        $dones = DB::select($query, [$user->id] );
+
+        return array_map(function ($item) {
+            $activity = new Activity( (array)$item );
+            $activity->id = $item->id;
+
+            return  $activity;
+        }, $dones);
     }
 }
