@@ -72,7 +72,7 @@ class StudentService implements IStudentService
         });
 
         if(!empty($todayPending)) {
-            $today = $todayPending[0];
+            $today = array_shift($todayPending);
             $dones = $this->findStatusActivity($today, $user);
 
             $activities = array_filter($activities, function ($item) use($today) {
