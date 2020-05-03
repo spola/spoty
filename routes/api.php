@@ -31,4 +31,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::middleware(['auth:api', 'user:student'])->namespace("API")->group(function () {
     Route::get('course/{course}/activities', 'CourseActivityController@index');
     Route::put('course/{course}/activity/{activity}', 'CourseActivityController@update');
+
+    Route::get('student/pending', 'StudentController@pending');
 });
