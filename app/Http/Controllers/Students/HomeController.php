@@ -38,8 +38,13 @@ class HomeController extends Controller
     public function land() {
         $user = Auth::user();
 
-        extract( $this->service->land($user));
+        $data = $this->service->land($user);
 
-        return view('students.home.land', compact('activities', 'today', 'dones', 'news'));
+        return view('students.home.land', [
+            'activities' => $data->activities,
+            'today' => $data->today,
+            'dones' => $data->dones,
+            'news' => $data->news,
+        ]);
     }
 }

@@ -5,8 +5,21 @@ use Illuminate\Database\Eloquent\Collection;
 
 use App\Activity;
 use App\News;
+use App\User;
 use App\Repositories\IActivityRepository;
 use Carbon\Carbon;
+
+class LandStudent {
+    public $activities;
+    public $today;
+    public $dones;
+    public $news;
+}
+class LandActivities {
+    public $activities;
+    public $today;
+    public $dones;
+}
 
 class StudentService implements IStudentService
 {
@@ -21,7 +34,7 @@ class StudentService implements IStudentService
         $this->activityRepository = $activityRepository;
     }
 
-    public function land($user) {
+    public function landActivities(User $user) : LandActivities {
         Carbon::setWeekStartsAt(Carbon::MONDAY);
 
         $dones = null;
@@ -41,13 +54,32 @@ class StudentService implements IStudentService
             });
         }
 
+        $return = new LandActivities();
+        $return->activities = $activities;
+        $return->today = $today;
+        $return->dones = $dones;
+
+        return $return;
+    }
+
+    public function land(User $user): LandStudent {
+
+        $data = $this->landActivities($user);
+
         $news = News::where('grade_id', $user->grade_id)
             ->where('published', '<=', Carbon::now())
             ->orderBy('published', 'desc')
             ->take(5)
             ->get();
 
+        $return = new LandStudent();
 
-        return compact('activities', 'today', 'dones', 'news');
+        $return->activities = $data->activities;
+        $return->today = $data->today;
+        $return->dones = $data->dones;
+
+        $return->news = $news;
+
+        return $return;
     }
 }
