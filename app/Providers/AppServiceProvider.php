@@ -25,6 +25,10 @@ class AppServiceProvider extends ServiceProvider
             'App\Services\IStudentService',
             'App\Services\StudentService'
         );
+        $this->app->bind(
+            'App\Services\IParentService',
+            'App\Services\ParentService'
+        );
     }
 
     /**

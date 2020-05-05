@@ -69,43 +69,51 @@
     </style>
 
 <div class="container">
-
-        @foreach($respuestas as $respuesta)
-            <?php $student = $respuesta['student']; $totales = $respuesta['totales'] ?>
-            <div class="row">
-                <h1>{{$student->name}} <small><a href="{{route('parent.grade.show', ['grade'=>$student->grade_id])}}">(detalle)</a></small> </h1>
-            </div>
-            <div class="row">
-            @foreach($totales as $course)
-                <div class="col-md-4 col-xl-3">
-                    <div class="card order-card {{ $course->respondidas_total_evaluadas == $course->total_evaluadas ? 'bg-c-green':'bg-c-blue' }} ">
-                        <div class="card-block">
-                            <h3 class="m-b-20">
-                                {{$course->name}}
-                            </h3>
-                            <h5 class="text-right">
-                                Evaluadas {{$course->respondidas_total_evaluadas}}/{{$course->total_evaluadas}}
-                            </h5>
-                            <p class="m-b-0 text-right">Todas &nbsp;
-                                <span class="f-right">
-                                {{$course->respondidas_total}}/{{$course->total}}
-                                </span>
-                            </p>
+    @foreach($respuestas as $respuesta)
+        <?php $student = $respuesta['student'];?>
+        <div class="row">
+            <h1>{{$student->name}} - {{$student->grade->name}}<small><a href="{{route('parent.grade.show', ['grade'=>$student->grade_id])}}">(detalle)</a></small> </h1>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-8">Actividades Pendientes</div>
+                            <div class="col-4">{{$respuesta['done']}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8">Actividades Totales</div>
+                            <div class="col-4">{{$respuesta['total']}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8">Pendientes de la semana</div>
+                            <div class="col-4">{{$respuesta['week']}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8">Atrasados</div>
+                            <div class="col-4">{{$respuesta['remaining']}}</div>
                         </div>
                     </div>
                 </div>
-            @endforeach
             </div>
-        @endforeach
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-8">Total alumnos del curso</div>
+                            <div class="col-4">{{$respuesta['students']}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8">Promedio actividades hechas</div>
+                            <div class="col-4">{{$respuesta['average']}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
 
 </div>
 
 @endsection
-<?php
-/*
-dd([
-    'totales' => $totales,
-    'respondidas' => $respondidas
-]);
-*/
-?>
