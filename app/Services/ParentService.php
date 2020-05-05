@@ -42,11 +42,13 @@ class ParentService implements IParentService
 
             (SELECT count(1) from activities a
                 WHERE a.due_date BETWEEN :week_start and :week_end
+                AND a.course_id in (select id from courses c2 where c2.grade_id = :grade_id_5)
                 AND a.id not in ( select id from user_activities ua where user_id = :user_id_2 and deleted_at is null )
             ) as 'week',
 
             (SELECT count(1) from activities a
                 WHERE a.due_date <= :today
+                AND a.course_id in (select id from courses c2 where c2.grade_id = :grade_id_4)
                 AND a.id not in ( select id from user_activities ua where user_id = :user_id_3 and deleted_at is null )
             ) as 'remaining',
 
@@ -61,6 +63,7 @@ class ParentService implements IParentService
             ";
 
             $today = Carbon::today();
+
 			$result = \DB::select( \DB::raw($queryStr), [
                 'user_id_1' => $student->id,
                 'user_id_2' => $student->id,
@@ -69,10 +72,12 @@ class ParentService implements IParentService
                 'grade_id_1' => $student->grade_id,
                 'grade_id_2' => $student->grade_id,
                 'grade_id_3' => $student->grade_id,
+                'grade_id_4' => $student->grade_id,
+                'grade_id_5' => $student->grade_id,
 
-                'week_start' => $today->startOfWeek(),
-                'week_end' => $today->endOfWeek(),
-                'today' => $today
+                'week_start' => $today->startOfWeek()->format('Y-m-d H:i:s'),
+                'week_end' => $today->endOfWeek()->format('Y-m-d H:i:s'),
+                'today' => $today->format('Y-m-d H:i:s'),
             ]);
 
             $result = $result[0];
