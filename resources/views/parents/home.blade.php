@@ -79,20 +79,24 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-8">Actividades Pendientes</div>
+                            <div class="col-8">Atrasados</div>
+                            <div class="col-4">{{$respuesta['remaining']}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8">Restantes de la semana</div>
+                            <div class="col-4">{{$respuesta['week_remaining']}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8">Total de la Semana</div>
+                            <div class="col-4">{{$respuesta['week']}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8">Actividades Realizadas</div>
                             <div class="col-4">{{$respuesta['done']}}</div>
                         </div>
                         <div class="row">
                             <div class="col-8">Actividades Totales</div>
                             <div class="col-4">{{$respuesta['total']}}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-8">Pendientes de la semana</div>
-                            <div class="col-4">{{$respuesta['week']}}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-8">Atrasados</div>
-                            <div class="col-4">{{$respuesta['remaining']}}</div>
                         </div>
                     </div>
                 </div>

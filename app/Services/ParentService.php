@@ -40,10 +40,15 @@ class ParentService implements IParentService
                 where a.course_id in (select id from courses c2 where c2.grade_id = :grade_id_1)) as 'total',
 
             (SELECT count(1) from activities a
-                WHERE a.due_date BETWEEN :week_start and :week_end
+                WHERE a.due_date BETWEEN :week_start_1 and :week_end_1
+                AND a.course_id in (select id from courses c2 where c2.grade_id = :grade_id_6)
+            ) as 'week',
+
+            (SELECT count(1) from activities a
+                WHERE a.due_date BETWEEN :week_start_2 and :week_end_2
                 AND a.course_id in (select id from courses c2 where c2.grade_id = :grade_id_5)
                 AND a.id not in ( select ua.activity_id from user_activities ua where user_id = :user_id_2 and deleted_at is null )
-            ) as 'week',
+            ) as 'week_remaining',
 
             (SELECT count(1) from activities a
                 WHERE a.due_date <= :today
@@ -73,9 +78,12 @@ class ParentService implements IParentService
                 'grade_id_3' => $student->grade_id,
                 'grade_id_4' => $student->grade_id,
                 'grade_id_5' => $student->grade_id,
+                'grade_id_6' => $student->grade_id,
 
-                'week_start' => $today->startOfWeek()->format('Y-m-d H:i:s'),
-                'week_end' => $today->endOfWeek()->format('Y-m-d H:i:s'),
+                'week_start_1' => $today->startOfWeek()->format('Y-m-d H:i:s'),
+                'week_start_2' => $today->startOfWeek()->format('Y-m-d H:i:s'),
+                'week_end_1' => $today->endOfWeek()->format('Y-m-d H:i:s'),
+                'week_end_2' => $today->endOfWeek()->format('Y-m-d H:i:s'),
                 'today' => $today->format('Y-m-d H:i:s'),
             ]);
 
@@ -92,6 +100,7 @@ class ParentService implements IParentService
                 'done' => $result->done ?? 0,
                 'total' => $result->total ?? 0,
                 'week' => $result->week ?? 0,
+                'week_remaining' => $result->week_remaining ?? 0,
                 'remaining' => $result->remaining ?? 0,
 
                 'students' => $result->students ?? 0,
