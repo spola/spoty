@@ -32,8 +32,7 @@ class ParentService implements IParentService
             (select count(1) as done
                 from user_activities
                 where user_id = :user_id_1
-                and deleted_at is null
-               group by user_activities.activity_id) as 'done',
+                and deleted_at is null) as 'done',
 
 
             (select count(1) as total
@@ -43,13 +42,13 @@ class ParentService implements IParentService
             (SELECT count(1) from activities a
                 WHERE a.due_date BETWEEN :week_start and :week_end
                 AND a.course_id in (select id from courses c2 where c2.grade_id = :grade_id_5)
-                AND a.id not in ( select id from user_activities ua where user_id = :user_id_2 and deleted_at is null )
+                AND a.id not in ( select ua.activity_id from user_activities ua where user_id = :user_id_2 and deleted_at is null )
             ) as 'week',
 
             (SELECT count(1) from activities a
                 WHERE a.due_date <= :today
                 AND a.course_id in (select id from courses c2 where c2.grade_id = :grade_id_4)
-                AND a.id not in ( select id from user_activities ua where user_id = :user_id_3 and deleted_at is null )
+                AND a.id not in ( select ua.activity_id from user_activities ua where user_id = :user_id_3 and deleted_at is null )
             ) as 'remaining',
 
             (select count(1) from users u where u.grade_id = :grade_id_2
