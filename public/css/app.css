@@ -9,6 +9,14 @@ body {
     SIDEBAR STYLE
 ----------------------------------------------------- */
 
+.bg-news {
+  background-color: #fde8e0 !important;
+}
+
+.navbar.navbar-expand-md.navbar-light.bg-white.shadow-sm {
+  background-color: #fff !important;
+}
+
 .wrapper {
   display: flex;
   width: 100%;
@@ -18,8 +26,8 @@ body {
 #sidebar {
   min-width: 80px;
   max-width: 80px;
-  background: #7386D5;
-  color: #fff;
+  background: #fde8e0;
+  color: #000;
   transition: all 0.3s;
 }
 
@@ -29,7 +37,7 @@ body {
 
 #sidebar .sidebar-header {
   padding: 20px;
-  background: #6d7fcc;
+  background: #fde8e0;
 }
 
 #sidebar ul.components {

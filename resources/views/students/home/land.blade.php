@@ -57,7 +57,7 @@
 </div>
 
 <div class="row justify-content-center mt-1">
-    <div class="col-12 col-xl-5">
+    <div class="col-12 col-xl-8">
 
     @foreach($news as $item)
         @component('components.news.' . $item->type, ['item'=>$item] ) @endcomponent

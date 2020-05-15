@@ -3,13 +3,21 @@ body {
     background: #fafafa;
 }
 
+$sidebar-color: #fde8e0;
+$sidebar-color-header: #fde8e0;
+$navbar-color: #fff;
 
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
 
 $sidebar-icon-width: 30px;
-
+.bg-news {
+    background-color: $sidebar-color !important;
+}
+.navbar.navbar-expand-md.navbar-light.bg-white.shadow-sm {
+    background-color: $navbar-color !important;
+}
 .wrapper {
     display: flex;
     width: 100%;
@@ -19,8 +27,8 @@ $sidebar-icon-width: 30px;
 #sidebar {
     min-width: $sidebar-icon-width + 50px;
     max-width: $sidebar-icon-width + 50px;
-    background: #7386D5;
-    color: #fff;
+    background: $sidebar-color;
+    color: #000;
     transition: all 0.3s;
 
 
@@ -30,7 +38,7 @@ $sidebar-icon-width: 30px;
 
     .sidebar-header {
         padding: 20px;
-        background: #6d7fcc;
+        background: $sidebar-color-header;
     }
 
     ul.components {
@@ -210,7 +218,7 @@ $sidebar-icon-width: 30px;
             margin-left: auto
         }
     }
-    
+
     .todo-indicator {
         position: absolute;
         width: 4px;
@@ -221,7 +229,7 @@ $sidebar-icon-width: 30px;
         opacity: .6;
         transition: opacity .2s
     }
-    
+
     .bg-warning {
         background-color: #f7b924 !important
     }

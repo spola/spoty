@@ -3,16 +3,16 @@
 @section('styles')
 @endsection
 @section('content')
-    <div id="principal" class="login">
+    <div id="principal" class="login h-100 align-middle">
         <h1>&nbsp;</h1>
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <img src="{{asset('images/logo_externo.png')}}" class="logo_externo"/>
+        <div class="container h-100">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-6  text-center logo-container">
+                    <img src="{{asset('images/logo_aplica2_original.png')}}" class="logo_externo"/>
                 </div>
             </div>
             <div id="login-row" class="row justify-content-center align-items-center">
-                <div id="login-column" class="col-md-6">
+                <div id="login-column" class="col-md-6 login-column">
                     <div id="login-box" class="col-md-12 card-box">
                         <form id="login-form" class="form" method="POST" action="{{ route('login') }}">
                             @csrf
@@ -54,7 +54,7 @@
                                     @endif
                                 </div>
                             </div>
-                            
+
                         </form>
                     </div>
                 </div>
