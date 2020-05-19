@@ -3,6 +3,9 @@ body {
     background: #fafafa;
 }
 
+.green {
+    color: green;
+}
 
 /* ---------------------------------------------------
     SIDEBAR STYLE
@@ -210,7 +213,7 @@ $sidebar-icon-width: 30px;
             margin-left: auto
         }
     }
-    
+
     .todo-indicator {
         position: absolute;
         width: 4px;
@@ -221,7 +224,7 @@ $sidebar-icon-width: 30px;
         opacity: .6;
         transition: opacity .2s
     }
-    
+
     .bg-warning {
         background-color: #f7b924 !important
     }

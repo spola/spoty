@@ -63,6 +63,7 @@ Route::name('parent.')
 
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/calendars', 'HomeController@calendars')->name('calendars');
+    Route::get('/week', 'HomeController@week')->name('week');
     Route::get('/grade/{grade}', 'GradeController@show')->name('grade.show');
 });
 
