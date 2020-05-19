@@ -2,8 +2,6 @@
 
 namespace App\Services;
 
-use Illuminate\Database\Eloquent\Collection;
-
 use App\Activity;
 use App\News;
 use App\User;
@@ -109,5 +107,27 @@ class ParentService implements IParentService
         }
 
         return $respuesta;
+    }
+
+    public function week(User $student): array {
+        $activities = $this->activityRepository->weekActivities($student);
+
+        $returns= [
+            1 => [],
+            2 => [],
+            3 => [],
+            4 => [],
+            5 => [],
+        ];
+
+        foreach($activities as $activity) {
+            if($activity->due_date->isDayOfWeek(Carbon::SATURDAY)) continue;
+            if($activity->due_date->isDayOfWeek(Carbon::SUNDAY)) continue;
+
+            $returns[$activity->due_date->dayOfWeek][] =  $activity;
+        }
+
+        return $returns;
+
     }
 }

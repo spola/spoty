@@ -55,6 +55,13 @@
                     </a>
                 </li>
                 <li class="icons">
+                    <a href="{{route('parent.week')}}">
+                    <i class="far fa-calendar-check"></i>
+                        <br/>
+                        Semana
+                    </a>
+                </li>
+                <li class="icons">
                     <a href="{{route('parent.calendars')}}">
                         <i class="far fa-calendar-alt"></i>
                         <br/>

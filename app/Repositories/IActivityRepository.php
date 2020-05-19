@@ -5,6 +5,8 @@ namespace App\Repositories;
 use App\Activity;
 use App\UserActivity;
 use App\User;
+use Illuminate\Support\Collection;
+
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 
@@ -53,4 +55,6 @@ interface IActivityRepository
      * @return array of Activity
      */
     public function pendingActivities(User $user): array;
+
+    public function weekActivities(User $user): Collection;
 }

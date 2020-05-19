@@ -12,7 +12,7 @@ class Grade extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'calendar'
+        'name', 'calendar', 'teacher_id',
     ];
 
     public function activities()
@@ -28,5 +28,10 @@ class Grade extends Model
     public function students()
     {
         return $this->hasMany('App\User')->orderBy('name', "asc");
+    }
+
+    public function teacher()
+    {
+        return $this->belongsTo('App\User');
     }
 }

@@ -10,6 +10,7 @@ use Carbon\Carbon;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Collection;
 
 
 class ActivityRepository implements IActivityRepository
@@ -93,5 +94,42 @@ class ActivityRepository implements IActivityRepository
 
             return  $activity;
         }, $dones);
+    }
+
+    public function weekActivities(User $user): Collection {
+        $coursesIds = $user->grade->courses->pluck('id')->all();
+
+        $activities = Activity::query()
+            // ->select('id')
+            ->whereBetween('due_date', [Carbon::now()->startOfWeek(),Carbon::now()->endOfWeek()])
+            ->whereIn('course_id', $coursesIds)
+            ->orderBy('course_id', 'asc')
+            ->orderBy('id', 'asc')
+            ->get();
+
+        $ids = $activities->pluck('id')->all();
+        $ids_str = implode(",", $ids);
+
+        if(empty($ids)) {
+            return collect();
+        }
+
+        $query = "SELECT user_activities.activity_id as id
+                from user_activities
+                where activity_id in ($ids_str)
+                and user_id = ?
+                and deleted_at is null
+            ";
+
+        $dones = DB::select($query, [$user->id] );
+        $dones = array_map(function ( $item) {
+            return $item->id;
+        }, $dones);
+
+        $activities->map(function($item) use (&$dones) {
+            $item->done = in_array($item->id, $dones);
+        });
+
+        return $activities;
     }
 }
