@@ -66,8 +66,14 @@ class ActivitiesCloner extends Command
 
 
         foreach($source->courses as $course) {
-            $destinyCourse = Course::where('name', $course->name)->where('id', '!=', $course->id)->first();
-            if(!$destinyCourse) continue;
+            $destinyCourse = Course::where('name', $course->name)
+                                    // ->where('id', '!=', $course->id)
+                                    ->where('grade_id', $destiny->id)
+                                    ->first();
+            if(!$destinyCourse) {
+                $this->info('Ignorando el curso ' . $course->name);
+                continue;
+            }
 
             foreach($course->activities as $activity) {
                 $destinyActivity = Activity::where('title', $activity->title)
