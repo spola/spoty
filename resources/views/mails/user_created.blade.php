@@ -6,7 +6,7 @@
 
 
 
-#¡Te hemos creado una cuenta en SPOTY!
+#¡Te hemos creado una cuenta en Aplica2!
 
 Tu nombre de usuario es tu correo y la contraseña inicial es 12345678
 

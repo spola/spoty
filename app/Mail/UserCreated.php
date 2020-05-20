@@ -31,7 +31,7 @@ class UserCreated extends Mailable
     {
         return $this->markdown('mails.user_created', [
             'url'           => config('app.url'),
-            'pathToImage'   => 'images/logo_externo.png',
+            'pathToImage'   => 'images/logo_aplica2_original.png',
             'app_name'      => config('app.name')
         ]);
     }
