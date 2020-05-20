@@ -93,7 +93,7 @@
                     <button class="navbar-toggler" type="button" id="sidebarCollapse">
                         <i class="fas fa-bars"></i>
                     </button>
-                    <img src="{{asset('images/logo_superior.png')}}" style="height: 60px;">
+                    <img src="{{asset('images/logo_superior_aplica2.png')}}" style="height: 60px;">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
                     </button>
