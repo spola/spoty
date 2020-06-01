@@ -84,7 +84,7 @@ class ActivityRepository implements IActivityRepository
                     and deleted_at is null
                 )
                 AND id in ($ids_str)
-                order created_at"; //by course_id asc, due_date asc";
+                order by a.created_at"; //by course_id asc, due_date asc";
 
         $dones = DB::select($query, [$user->id] );
 
