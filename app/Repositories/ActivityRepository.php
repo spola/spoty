@@ -103,7 +103,6 @@ class ActivityRepository implements IActivityRepository
             // ->select('id')
             ->whereBetween('due_date', [Carbon::now()->startOfWeek(),Carbon::now()->endOfWeek()])
             ->whereIn('course_id', $coursesIds)
-            ->orderBy('course_id', 'asc')
             ->orderBy('id', 'asc')
             ->get();
 
